@@ -98,7 +98,11 @@ function makePage(opts) {
     t,
     intake,
     geoKey: geo.key,
+    geoLabel: label,
     practiceKey: opts.practice,
+    // The ad group this URL is the final URL for. Shown on the hub so an
+    // admin can match page to campaign without opening each one.
+    adGroup: lang === 'es' ? opts.esLabel : opts.label,
 
     title: o.title || D.title,
     metaDescription: o.metaDescription || D.meta,

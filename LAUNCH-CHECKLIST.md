@@ -190,7 +190,10 @@ skeptical visitor can click and check. On the Google profile, right-click the
 
 ## Campaign wiring
 
-- [ ] Point each ad group at its **own** URL from the table in the README. Sending
+Open the hub at the root of the subdomain — it lists every ad group with its
+final URLs and a copy button, and shows these blockers live.
+
+- [ ] Point each ad group at its **own** URL from the hub. Sending
       a "Cache County truck" click to a general injury page pays a premium for a
       worse conversion rate.
 - [ ] Run Spanish as **separate campaigns**, not as extra keywords in the English

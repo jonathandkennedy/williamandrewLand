@@ -60,6 +60,7 @@ function brandTokens(site) {
     c.inkMid && `--ink-3:${c.inkMid}`,
     c.accent && `--accent:${c.accent}`,
     c.accentDark && `--accent-press:${c.accentDark}`,
+    c.accentTint && `--accent-tint:${c.accentTint}`,
   ].filter(Boolean);
   return rows.length ? `<style>:root{${rows.join(';')}}</style>` : '';
 }

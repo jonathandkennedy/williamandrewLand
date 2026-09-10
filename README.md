@@ -40,6 +40,19 @@ settlement figure — the page **omits the block rather than inventing content**
 | No call attribution | CallRail tracking number `(801) 683-4993` throughout, `gclid`/`utm_*` captured and attached to every lead. |
 | No Spanish, in a valley with a large Spanish-speaking workforce | Full `/es/` set, written rather than translated, leading on the immigration-status question. |
 
+## The hub at `/`
+
+The root of the subdomain is an **internal hub for whoever runs the ads**, not a
+landing page. It lists every ad group with its English and Spanish final URLs,
+a one-click copy button for each, the H1 the visitor will actually see, a
+tracking-and-intake status table, and the current launch blockers and warnings
+rendered straight from the build audit — so whoever is about to spend money
+sees what is unfinished without reading a terminal.
+
+It is `noindex` and not linked from any landing page, but anyone with the URL
+can open it, so nothing goes on it that is not already visible in the landing
+pages' own source.
+
 ## Pages
 
 Fourteen landing pages — every ad group in both languages — plus a thank-you
@@ -55,6 +68,7 @@ page per language.
 | `/ogden-truck-accident/` | `/es/accidente-de-trailer-ogden/` | Weber & Davis — truck |
 | `/ogden-car-accident/` | `/es/accidente-de-carro-ogden/` | Weber & Davis — car |
 | `/thank-you/` | `/es/gracias/` | Post-submit, with backup click-to-call |
+| `/` | — | Internal hub for the ads admin |
 
 ## Spanish
 
@@ -108,6 +122,7 @@ src/config/shared/practice-*.js Truck / car / wrongful-death content, each expor
 src/config/shared/strings.js    UI chrome in both languages
 src/config/shared/make-page.js  Composes geo x practice x lang; makePair() emits both
 src/config/pages/index.js       The page manifest — add pages here
+src/template/hub.js             The internal hub rendered at /
 src/template/                   HTML rendering
 src/assets/                     styles.css, lp.js (copied verbatim to dist/)
 build.js                        Generator + launch audit

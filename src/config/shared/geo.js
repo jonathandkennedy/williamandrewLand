@@ -125,7 +125,9 @@ module.exports = {
 
   'weber-davis': {
     key: 'weber-davis',
-    label: 'Weber &amp; Davis County',
+    // Plain text, never HTML entities. Templates escape on output, so an
+    // entity here would be escaped a second time and render literally.
+    label: 'Weber & Davis County',
     labelShort: 'Ogden and Layton',
     areaCode: '801',
     hub: 'Ogden',

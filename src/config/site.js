@@ -161,10 +161,7 @@ module.exports = {
           'I\'ve found Will Andrews to be a good and honorable attorney. He\'s intelligent, ' +
           'thoughtful, and works hard for the best interests of his clients. He will get great ' +
           'results! I highly recommend him in all personal injury matters!',
-        // SUPPLY - the reviewer's display name was cropped out of the profile
-        // screenshot. It shows as a Google Local Guide with 26 reviews. Put
-        // the real name here; the page renders this fallback until then.
-        name: 'Google Local Guide',
+        name: 'Lane Clark',
         source: 'Google',
         matter: '',
       },
@@ -247,26 +244,31 @@ module.exports = {
     origin: 'https://results.williamandrewslaw.com',
 
     /**
-     * SUPPLY - brand palette, to match williamandrewslaw.com exactly.
+     * Brand palette: black, red and white, read off the homepage.
      *
      * These are emitted as CSS custom properties into every page head and
-     * override the stylesheet defaults, so matching the main site is a change
-     * here and nowhere else. The values below are an approximation taken from
-     * the site's dark-navy-and-orange treatment; they have NOT been sampled
-     * from the live site. Replace with the real hex values.
+     * override the stylesheet defaults, so the whole palette is this one
+     * object.
      *
-     *   ink       darkest brand navy - hero, footer, headings
-     *   inkMid    one step lighter, used in the hero gradient
-     *   accent    the orange on the call buttons
-     *   accentDark  pressed/shadow state of the accent
+     *   ink        the black of the site's nav bar - hero, masthead, footer
+     *   inkMid     one step lifted, so the hero is not a flat black slab
+     *   accent     the brand red - call buttons, rules, step numbers
+     *   accentDark pressed state, and the shadow under the call button
+     *   accentTint light warm tint for the second headline line on black
+     *
+     * The red was eyedropped from a screenshot of the homepage rather than
+     * sampled from the stylesheet, because this environment cannot reach the
+     * host. It is close, not exact - if the firm has the real value, drop it
+     * in. Worth knowing: white on this red is 4.63:1, comfortably over the
+     * 3:1 a UI component needs, so the call button keeps white text.
      */
-    // Date this once the hex values below are the real ones.
-    colorsVerifiedOn: '',
+    colorsVerifiedOn: '2026-09-10',
     colors: {
-      ink: '#0B1524',
-      inkMid: '#23344F',
-      accent: '#F26B21',
-      accentDark: '#CF560F',
+      ink: '#000000',
+      inkMid: '#1C1C1C',
+      accent: '#E02B1D',
+      accentDark: '#A81C12',
+      accentTint: '#FFCFC9',
     },
   },
 };

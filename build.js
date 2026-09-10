@@ -20,6 +20,7 @@ const site = require('./src/config/site');
 const buildPages = require('./src/config/pages');
 const pageTpl = require('./src/template/page');
 const thankYouTpl = require('./src/template/thankyou');
+const hubTpl = require('./src/template/hub');
 
 const DIST = path.join(__dirname, 'dist');
 const ASSETS = path.join(__dirname, 'src', 'assets');
@@ -117,10 +118,8 @@ function audit(pages) {
   // component and the button text has to go dark instead.
   if (!site.site.colorsVerifiedOn) {
     warnings.push(
-      'site.site.colors are an approximation, not sampled from williamandrewslaw.com. Replace ' +
-      'with the real hex values and set colorsVerifiedOn. Note the call button is white on ' +
-      `${site.site.colors.accent} at 3.04:1 — barely over the 3:1 minimum — so a lighter brand ` +
-      'orange needs dark button text instead.'
+      'site.site.colors have not been confirmed against williamandrewslaw.com. Set ' +
+      'colorsVerifiedOn once they have.'
     );
   }
 
@@ -175,6 +174,24 @@ function audit(pages) {
       'inbound texts reach a monitored device — a text link into a dead inbox is worse than none.'
     );
   }
+
+  // Config carries plain text; every template escapes on output. An HTML
+  // entity that sneaks into config gets escaped a second time and renders
+  // literally on the page, which is invisible in review and obvious to a
+  // visitor. This catches it at build time instead.
+  const ENTITY = /&(amp|lt|gt|quot|#\d+|nbsp|mdash|ndash|hellip|rsquo|lsquo|ldquo|rdquo);/;
+  pages.forEach((p) => {
+    ['h1', 'h1Line2', 'subhead', 'title', 'metaDescription', 'formHeading', 'who'].forEach((f) => {
+      if (typeof p[f] === 'string' && ENTITY.test(p[f])) {
+        blockers.push(`/${p.slug}/ field "${f}" contains an HTML entity: it will render literally.`);
+      }
+    });
+    p.faqs.forEach((q, i) => {
+      if (ENTITY.test(q.q) || q.a.some((x) => ENTITY.test(x))) {
+        blockers.push(`/${p.slug}/ FAQ ${i + 1} contains an HTML entity: it will render literally.`);
+      }
+    });
+  });
 
   // Message match: the H1 has to contain the geography the ad group targets,
   // otherwise the visitor's first read is "wrong page".
@@ -263,30 +280,18 @@ function main() {
   // competes with the main site's organic pages.
   write('robots.txt', 'User-agent: *\nDisallow: /\n');
 
-  // Root redirects to the flagship so a stray direct visit still lands
-  // somewhere useful.
-  write(
-    'index.html',
-    `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow">
-<meta http-equiv="refresh" content="0; url=/${pages[0].slug}/">
-<title>Redirecting</title>
-</head>
-<body><p><a href="/${pages[0].slug}/">Continue</a></p></body>
-</html>
-`
-  );
-
   const assetCount = copyDir(ASSETS, path.join(DIST, 'assets'));
 
-  console.log(`\n  Built ${pages.length} landing pages + thank-you page`);
+  const { blockers, warnings } = audit(pages);
+
+  // Root is the hub a PPC admin opens to pick the final URL for an ad group.
+  // It renders the same audit printed below, so whoever is about to spend
+  // money sees what is unfinished without reading the terminal.
+  write('index.html', hubTpl.render(site, pages, { blockers, warnings }));
+
+  console.log(`\n  Built ${pages.length} landing pages + thank-you page + hub at /`);
   pages.forEach((p) => console.log(`    /${p.slug}/`));
   console.log(`  Copied ${assetCount} asset file(s)\n`);
-
-  const { blockers, warnings } = audit(pages);
 
   if (warnings.length) {
     console.log('  WARNINGS (page works, but weaker than it should be):');

@@ -9,12 +9,12 @@
    ========================================================================== */
 
 :root {
-  --ink: #0B1524;
-  --ink-2: #16243a;
-  --ink-3: #23344f;
-  --accent: #F26B21;
-  --accent-dark: #d4551180;
-  --accent-press: #cf560f;
+  --ink: #000000;
+  --ink-2: #000000;
+  --ink-3: #1C1C1C;
+  --accent: #E02B1D;
+  --accent-press: #A81C12;
+  --accent-tint: #FFCFC9;
   --paper: #ffffff;
   --paper-2: #f5f7fa;
   --paper-3: #e8edf3;
@@ -113,7 +113,7 @@ img { max-width: 100%; display: block; }
    -------------------------------------------------------------------------- */
 .hero {
   background:
-    radial-gradient(120% 80% at 50% 0%, var(--ink-3) 0%, var(--ink) 62%);
+    radial-gradient(130% 85% at 50% 0%, var(--ink-3) 0%, var(--ink) 70%);
   color: #fff;
   padding-block: 16px 22px;
 }
@@ -125,7 +125,17 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   text-wrap: balance;
 }
-.hero h1 .hero__line2 { display: block; color: #ffd9c2; }
+/* Second line carries the promise, so it stays full white rather than a tint -
+   the brand is black, red and white, and a washed pink reads soft for a firm
+   whose own site says "Warrior Lawyer". The red rule under the headline echoes
+   the brush stroke on the homepage, and keeps red doing one job here: mark the
+   headline, then the call button. */
+.hero h1 .hero__line2 { display: block; color: #fff; }
+.hero h1::after {
+  content: ''; display: block;
+  width: 74px; height: 5px; margin-top: 11px;
+  background: var(--accent); border-radius: 3px;
+}
 .hero__sub {
   margin: 0 0 11px;
   font-size: 15.5px; line-height: 1.38; color: #d6e0ec;
@@ -173,7 +183,10 @@ img { max-width: 100%; display: block; }
 }
 .btn--call {
   background: var(--accent); color: #fff;
-  box-shadow: 0 2px 0 var(--accent-press), 0 6px 18px rgba(242,107,33,.28);
+  box-shadow: 0 2px 0 var(--accent-press), 0 6px 18px rgb(from var(--accent) r g b / .3);
+}
+@supports not (color: rgb(from red r g b)) {
+  .btn--call { box-shadow: 0 2px 0 var(--accent-press), 0 6px 18px rgba(0,0,0,.35); }
 }
 .btn--call:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--accent-press); }
 .btn--text {
@@ -231,7 +244,7 @@ img { max-width: 100%; display: block; }
   padding-right: 42px;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-  outline: 3px solid rgba(242,107,33,.32); outline-offset: 1px;
+  outline: 3px solid rgb(from var(--accent) r g b / .35); outline-offset: 1px;
   border-color: var(--accent);
 }
 .field input[aria-invalid='true'], .field select[aria-invalid='true'] { border-color: #c0392b; }
@@ -389,8 +402,9 @@ blockquote.quote footer { font-size: 13.5px; color: var(--text-soft); font-weigh
    -------------------------------------------------------------------------- */
 .stickybar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-  background: rgba(11,21,36,.97);
-  backdrop-filter: saturate(160%) blur(8px);
+  /* Solid, and tokenised. This is the most important element on the page;
+     it should not depend on backdrop-filter support to stay legible. */
+  background: var(--ink);
   border-top: 1px solid rgba(255,255,255,.14);
   padding: 7px 12px calc(6px + env(safe-area-inset-bottom, 0px));
 }
