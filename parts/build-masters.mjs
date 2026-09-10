@@ -9,6 +9,13 @@ const P = 'parts';
 const rd = (f) => fs.readFileSync(path.join(P, f), 'utf8');
 const J  = (f) => JSON.parse(rd(f));
 
+/* Headshot: any of these names, first match wins. Detected at build time so
+   dropping the file in and re-running is the whole job — no config edit, and
+   no page ever references an image that is not there. */
+const HEADSHOT = ['will-andrews.jpg','will-andrews.jpeg','will-andrews.png','will-andrews.webp',
+                  'headshot.jpg','headshot.png']
+  .find((f) => fs.existsSync(f)) || '';
+
 const CSS = rd('styles.css');
 const APP = rd('app.js');
 const C   = J('config.json');
@@ -273,7 +280,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <div class="quotes">
         ${quotes}
     </div>
-    <div class="who" data-who style="margin-top:18px">
+    <div class="who${HEADSHOT ? ' who--p' : ''}" data-who style="margin-top:18px">
+      ${HEADSHOT ? `<img src="/${HEADSHOT}" width="128" height="128" loading="lazy"
+        alt="${esc(C.RESPONSIBLE_ATTORNEY)}, Utah injury attorney">` : ''}
       <div>
         <h3 data-i="whoH">Who you are calling</h3>
         <p data-i="whoP">William Andrews has handled serious injury and wrongful death cases in Utah since 2004. He is the attorney on your case, not a case manager you get handed to after signing.</p>
@@ -357,7 +366,7 @@ let n = 0;
 for (const slug of Object.keys(EN)) {
   fs.writeFileSync(`${slug}.html`, buildMaster(slug));
   const kb = (fs.statSync(`${slug}.html`).size / 1024).toFixed(1);
-  console.log(`  ${slug}.html  ${kb} KB`);
+  console.log(`  ${slug}.html  ${kb} KB${HEADSHOT ? '' : '   (no headshot)'}`);
   n++;
 }
 console.log(`\n  ${n} masters written. Now: node generate-geo.mjs <master>.html --all`);

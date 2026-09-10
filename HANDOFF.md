@@ -172,7 +172,12 @@ converts; answering makes cases.
 - [ ] **Confirm Formspree's first submission** (a new form holds it pending email
       verification) and add `results.williamandrewslaw.com` to allowed domains.
 - [ ] **Wire Formspree onward** to something that calls and texts inside 5 minutes.
-- [ ] **Headshot** — drop `will-andrews.jpg` in the repo root.
+- [ ] **Headshot** — drop `will-andrews.jpg` (or `.jpeg`/`.png`/`.webp`, or
+      `headshot.jpg`) in the repo root, then re-run `build-masters.mjs` and
+      re-bake. Detection is automatic; no config edit. Square crop, 256px+ on
+      the short edge, under ~150KB. It renders in "Who you are calling",
+      **never** behind the headline — spending the mobile fold on a portrait
+      is what made the old geo pages fail.
 
 **Then**
 

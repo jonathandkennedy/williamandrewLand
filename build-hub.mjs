@@ -22,7 +22,8 @@ practices.forEach((p) => markets.forEach((m) => {
 const gaps = [];
 if (!C.CLARITY_ID) gaps.push('Clarity ID not set — no session recordings. Add CLARITY_ID and re-run build-masters. When you create the project: Settings → Setup → Advanced → Cookies OFF, or Clarity’s consent banner sits over the mobile call CTA.');
 if (!C.REVIEW_URL) gaps.push('Google reviews deep link not set — the 4.7 shows without a clickable source.');
-if (!fs.existsSync(C.HEADSHOT)) gaps.push(`Headshot missing — drop ${C.HEADSHOT} in the repo root.`);
+const SHOT = ['will-andrews.jpg','will-andrews.jpeg','will-andrews.png','will-andrews.webp','headshot.jpg','headshot.png'].find((f) => fs.existsSync(f));
+if (!SHOT) gaps.push('Headshot missing — drop will-andrews.jpg (or .png/.webp) in the repo root and re-run build-masters.mjs, then re-bake. The "who you are calling" block renders without a face until then.');
 if (missing.length) gaps.push(`${missing.length} baked page(s) missing — re-run generate-geo.mjs. A live ad group pointing at a missing page burns spend on a 404.`);
 const noPhonePool = markets.filter((k) => GEO[k].areaNote && !GEO[k].phone);
 if (noPhonePool.length) gaps.push(`These markets are outside the 801 area code and have no local tracking number yet: ${noPhonePool.map((k) => GEO[k].city).join(', ')}. An out-of-area number on a local lander drags Quality Score.`);
