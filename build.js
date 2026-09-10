@@ -78,11 +78,11 @@ function audit(pages) {
       'instead. No lead is silently lost, but no form lead is captured either.'
     );
   }
-  if (site.tracking.ga4Id) {
+  if (site.tracking.ga4Id && !site.verified.ga4NotDuplicatedInGtm) {
     warnings.push(
-      `GA4 (${site.tracking.ga4Id}) is loaded directly on every page. If the GTM container also ` +
-      'fires a GA4 tag with this same ID, pageviews will be double-counted. Keep GA4 in one ' +
-      'place — here or in GTM, not both.'
+      `GA4 (${site.tracking.ga4Id}) is loaded directly on every page. Open the GTM container and ` +
+      'confirm it does not also fire a GA4 tag with this ID, or pageviews double-count. Then ' +
+      'date verified.ga4NotDuplicatedInGtm.'
     );
   }
 
@@ -106,10 +106,10 @@ function audit(pages) {
   // Google Ads requires a reachable privacy policy, and a dead footer link on
   // a page taking personal details is a bad look regardless. These URLs were
   // inferred from the main site's structure, not verified.
-  if (!site.legal.linksVerifiedOn) {
+  if (!site.verified.legalLinks) {
     warnings.push(
       `Privacy (${site.legal.privacyUrl}) and terms (${site.legal.termsUrl}) URLs have not been ` +
-      'confirmed to resolve. Open both, then set legal.linksVerifiedOn.'
+      'confirmed to resolve. Open both, then date verified.legalLinks.'
     );
   }
 
@@ -117,10 +117,7 @@ function audit(pages) {
   // lighter than the placeholder, that drops below the 3:1 needed for a UI
   // component and the button text has to go dark instead.
   if (!site.site.colorsVerifiedOn) {
-    warnings.push(
-      'site.site.colors have not been confirmed against williamandrewslaw.com. Set ' +
-      'colorsVerifiedOn once they have.'
-    );
+    warnings.push('site.site.colors have not been confirmed. Date site.colorsVerifiedOn once they have.');
   }
 
   if (!site.reviews.quotes.length) {
@@ -142,10 +139,15 @@ function audit(pages) {
       'Google profile and set reviews.countVerifiedOn — a stale count is a credibility leak.'
     );
   }
-  if (!site.results.length) {
+  // Attribution check: a quote with no real name reads as invented.
+  site.reviews.quotes.forEach((q, i) => {
+    if (!q.name) warnings.push(`Review ${i + 1} has no reviewer name.`);
+  });
+  if (!site.results.length && !site.verified.resultsOmittedOnPurpose) {
     warnings.push(
       'site.results is empty, so the results section is omitted. "Millions won" persuades nobody; ' +
-      '2-4 specific recoveries with injury type and year do.'
+      '2-4 specific recoveries with injury type and year do. If the firm has decided not to ' +
+      'publish figures, date verified.resultsOmittedOnPurpose and this stops asking.'
     );
   }
   if (!site.bio.photo) {
@@ -158,22 +160,8 @@ function audit(pages) {
   if (!site.firm.barNumber) {
     warnings.push('site.firm.barNumber is empty. The footer loses a cheap verifiability signal.');
   }
-  // A quote with no attributable name reads as invented, which is worse than
-  // having one fewer review on the page.
-  site.reviews.quotes.forEach((q, i) => {
-    if (!q.name || q.name === 'Google Local Guide') {
-      warnings.push(
-        `Review ${i + 1} is attributed to "${q.name || '(no name)'}". Put the reviewer's real ` +
-        'Google display name here — an unattributed quote reads as staged.'
-      );
-    }
-  });
-  if (site.phones.sms.e164 === site.phones.tracking.e164) {
-    warnings.push(
-      'SMS and call numbers are identical. Confirm the CallRail number is SMS-enabled and that ' +
-      'inbound texts reach a monitored device — a text link into a dead inbox is worse than none.'
-    );
-  }
+
+
 
   // Config carries plain text; every template escapes on output. An HTML
   // entity that sneaks into config gets escaped a second time and renders

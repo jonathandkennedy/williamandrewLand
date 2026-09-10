@@ -93,9 +93,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="btn btn--call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="thankyou">
         ${ICONS.phone}<span>${esc(S.callNumber(site.phones.tracking.display))}</span>
       </a>
-      <a class="btn btn--text" href="sms:${esc(site.phones.sms.e164)}" data-loc="thankyou">
-        ${ICONS.chat}<span>${esc(S.textInstead)}</span>
-      </a>
     </div>
     <p class="cta-note" data-incident-hint hidden>
       ${esc(S.tyToldUs)} <strong data-incident-slot></strong>
@@ -133,10 +130,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="stickybar" role="region" aria-label="Contact us now">
   <div class="stickybar__row">
     <a class="sb-call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="sticky_ty">
-      ${ICONS.phone}<span>${esc(S.callNow)}</span>
-    </a>
-    <a class="sb-text" href="sms:${esc(site.phones.sms.e164)}" data-loc="sticky_ty">
-      ${ICONS.chat}<span>${esc(S.textPerson(site.firm.attorneyFirstName))}</span>
+      ${ICONS.phone}<span>${esc(S.callNumber(site.phones.tracking.display))}</span>
     </a>
   </div>
   <p class="stickybar__note">${esc(S.stickyNote(intake.hours))}</p>

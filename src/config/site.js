@@ -45,11 +45,10 @@ module.exports = {
     main: { display: '(801) 322-4878', e164: '+18013224878' },
 
     /**
-     * SMS destination. MUST be a monitored mobile or a CallRail SMS-enabled
-     * number. A texting link into a dead inbox is worse than no link.
-     * Defaults to the tracking number; override once CallRail SMS is on.
+     * No SMS. The firm does not offer text as a contact route, so there are
+     * no sms: links anywhere on these pages - a text button that nobody
+     * watches costs more than it earns.
      */
-    sms: { display: '(801) 683-4993', e164: '+18016834993' },
   },
 
   /**
@@ -93,7 +92,6 @@ module.exports = {
      */
     conversionLabels: {
       call: '',
-      text: '',
       formSubmit: '',
     },
     /**
@@ -218,7 +216,7 @@ module.exports = {
      */
     privacyUrl: 'https://www.williamandrewslaw.com/privacy-policy/',
     termsUrl: 'https://www.williamandrewslaw.com/terms-of-use/',
-    linksVerifiedOn: '',
+
   },
 
   /**
@@ -238,6 +236,27 @@ module.exports = {
    * than shown a false success, and the lead is logged to the console.
    */
   formEndpoint: 'https://formspree.io/f/mrpgjqan',
+
+  /**
+   * Checks only a human can close.
+   *
+   * Some things the build cannot test for itself: whether a URL resolves,
+   * whether a phone number receives texts, whether the GTM container already
+   * fires GA4. Rather than warn forever, each one is cleared by dating it
+   * here once someone has actually checked.
+   *
+   * Dating one of these is a statement that it was verified. Do not date
+   * anything to quiet the hub.
+   */
+  verified: {
+    // GTM container opened; it does NOT also fire a GA4 tag with this ID.
+    ga4NotDuplicatedInGtm: '',
+    // Both footer links opened and resolve.
+    legalLinks: '',
+    // Deliberate: the firm has chosen not to publish specific recoveries.
+    // Dating this stops the build asking for them.
+    resultsOmittedOnPurpose: '',
+  },
 
   site: {
     // Canonical origin for the landing-page subdomain.

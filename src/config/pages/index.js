@@ -44,8 +44,8 @@ module.exports = (site) => {
           'Free. No fee unless we win. The trucking company started building its file the day ' +
           'of the crash. You should have someone building yours.',
         localityHtml:
-          `<strong>We take Cache Valley truck cases and come to you.</strong> Logan, North Logan, ` +
-          `Smithfield, Hyrum, Providence &mdash; at the hospital or at your kitchen table.`,
+          `<strong>We take Cache Valley truck cases and come to you</strong> &mdash; Logan, ` +
+          `Smithfield, Hyrum and the rest of the county.`,
         formSub: 'Four questions, about thirty seconds. Or just call — it is faster.',
         detailPlaceholder: 'e.g. US-91 near Wellsville, last Tuesday',
         proofLede:
@@ -101,7 +101,7 @@ module.exports = (site) => {
         metaDescription:
           'Lost a family member in a crash in Cache Valley? Speak to a Utah wrongful death ' +
           'attorney. Free and confidential. We come to you.',
-        h1: 'Did your family lose someone in a crash?',
+        h1: 'Did your family lose someone in a Cache County crash?',
         h1Line2: ' We can take the next part off you.',
         subhead:
           'We are sorry. When you are ready, one call will tell you what the deadlines are and ' +

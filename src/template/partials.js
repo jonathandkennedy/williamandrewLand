@@ -68,14 +68,13 @@ function brandTokens(site) {
 /** Sticky bottom Call/Text bar. Present on every paid page, always visible. */
 function stickyBar(site, page) {
   const t = page.t;
+  // One button, full width. With no text option there is nothing to weigh it
+  // against, and a single target is easier to hit than two.
   return `
     <div class="stickybar" role="region" aria-label="${esc(t.callNow)}">
       <div class="stickybar__row">
         <a class="sb-call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="sticky_bar">
-          ${ICONS.phone}<span>${esc(t.callNow)}</span>
-        </a>
-        <a class="sb-text" href="sms:${esc(site.phones.sms.e164)}" data-loc="sticky_bar">
-          ${ICONS.chat}<span>${esc(t.textPerson(site.firm.attorneyFirstName))}</span>
+          ${ICONS.phone}<span>${esc(t.callNumber(site.phones.tracking.display))}</span>
         </a>
       </div>
       <p class="stickybar__note">${esc(t.stickyNote(page.intake.hours))}</p>
@@ -87,60 +86,96 @@ function stickyBar(site, page) {
  * `variant` distinguishes the hero instance from the repeat at the foot of
  * the page so the two can be told apart in reporting.
  */
+/**
+ * Intake form, built as four steps.
+ *
+ * Order is the point: the two tap-only questions come first, so the visitor
+ * has answered twice before being asked to type, and the phone number - the
+ * field that decides whether this is a lead at all - comes last, once they
+ * have already invested.
+ *
+ * Progressive enhancement, deliberately. The markup is a plain form of real
+ * radio inputs and text fields: with JavaScript off, or broken, or still
+ * loading, every question is visible and the form submits normally. The
+ * stepping is added on top by lp.js. Nobody loses a lead because a script
+ * did not run.
+ */
 function form(site, page, variant) {
   const id = `lead-${variant}`;
   const t = page.t;
-  const options = page.incidentOptions
-    .map((o) => `<option value="${esc(o)}">${esc(o)}</option>`)
-    .join('\n            ');
+
+  const choices = (name, options) =>
+    options
+      .map((o, i) => `
+          <label class="choice">
+            <input type="radio" name="${esc(name)}" value="${esc(o)}"
+                   id="${esc(id)}-${esc(name)}-${i}" required>
+            <span class="choice__box">${esc(o)}</span>
+          </label>`)
+      .join('');
 
   return `
     <form id="${esc(id)}" class="form-card${variant === 'repeat' ? ' form-card--inline' : ''}"
-          data-lp-form novalidate>
-      <h2 class="form-card__head">${esc(page.formHeading)}</h2>
-      <p class="form-card__sub">${esc(page.formSub)}</p>
+          data-lp-form data-steps aria-label="${esc(t.stepAria)}" novalidate>
 
-      <div class="field" data-field="name">
-        <label for="${esc(id)}-name">${esc(t.fieldName)}</label>
-        <input id="${esc(id)}-name" name="name" type="text" autocomplete="name"
-               enterkeyhint="next" required>
+      <div class="fhead">
+        <h2 class="form-card__head">${esc(page.formHeading)}</h2>
+        <p class="form-card__sub">${esc(page.formSub)}</p>
+      </div>
+
+      <div class="fprogress" data-progress hidden>
+        <div class="fprogress__track"><div class="fprogress__bar" data-bar></div></div>
+        <p class="fprogress__label" data-steplabel></p>
+      </div>
+
+      <p class="sr-only" role="status" aria-live="polite" data-announce></p>
+
+      <fieldset class="fstep" data-step data-label="${esc(t.stepIncident)}">
+        <legend class="fstep__q">${esc(t.stepIncident)}</legend>
+        <div class="choices">${choices('incident', page.incidentOptions)}</div>
         <p class="field__err" aria-live="polite"></p>
-      </div>
+      </fieldset>
 
-      <div class="field" data-field="phone">
-        <label for="${esc(id)}-phone">${esc(t.fieldPhone)}</label>
-        <input id="${esc(id)}-phone" name="phone" type="tel" inputmode="tel"
-               autocomplete="tel-national" placeholder="(435) 555-0134"
-               enterkeyhint="next" required>
+      <fieldset class="fstep" data-step data-label="${esc(t.stepWhen)}">
+        <legend class="fstep__q">${esc(t.stepWhen)}</legend>
+        <div class="choices">${choices('crash_when', t.stepWhenOptions)}</div>
         <p class="field__err" aria-live="polite"></p>
-      </div>
+      </fieldset>
 
-      <div class="field" data-field="incident">
-        <label for="${esc(id)}-incident">${esc(t.fieldIncident)}</label>
-        <select id="${esc(id)}-incident" name="incident" required>
-          <option value="">${esc(t.choose)}</option>
-            ${options}
-        </select>
-        <p class="field__err" aria-live="polite"></p>
-      </div>
+      <fieldset class="fstep" data-step data-label="${esc(t.stepName)}">
+        <legend class="fstep__q">${esc(t.stepName)}</legend>
+        <p class="fstep__hint">${esc(t.stepNameHint)}</p>
+        <div class="field" data-field="name">
+          <label class="sr-only" for="${esc(id)}-name">${esc(t.fieldName)}</label>
+          <input id="${esc(id)}-name" name="name" type="text" autocomplete="given-name"
+                 enterkeyhint="next" required>
+          <p class="field__err" aria-live="polite"></p>
+        </div>
+        <button type="button" class="btn btn--submit fnext">${esc(t.stepNext)}</button>
+      </fieldset>
 
-      <div class="field">
-        <label for="${esc(id)}-detail">
-          ${esc(t.fieldDetail)} <span class="opt">${esc(t.fieldOptional)}</span>
-        </label>
-        <input id="${esc(id)}-detail" name="detail" type="text"
-               placeholder="${esc(page.detailPlaceholder)}" enterkeyhint="send">
-      </div>
+      <fieldset class="fstep" data-step data-label="${esc(t.stepPhone)}">
+        <legend class="fstep__q">${esc(t.stepPhone)}</legend>
+        <p class="fstep__hint">${esc(t.stepPhoneHint)}</p>
+        <div class="field" data-field="phone">
+          <label class="sr-only" for="${esc(id)}-phone">${esc(t.fieldPhone)}</label>
+          <input id="${esc(id)}-phone" name="phone" type="tel" inputmode="tel"
+                 autocomplete="tel-national" placeholder="(435) 555-0134"
+                 enterkeyhint="send" required>
+          <p class="field__err" aria-live="polite"></p>
+        </div>
+        <button type="submit" class="btn btn--submit">
+          ${esc(t.submit)}
+          <span class="btn__sub">${esc(t.submitSub)}</span>
+        </button>
+      </fieldset>
 
       <div class="hp" aria-hidden="true">
         <label for="${esc(id)}-gotcha">${esc(t.honeypot)}</label>
         <input id="${esc(id)}-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
       </div>
 
-      <button type="submit" class="btn btn--submit">
-        ${esc(t.submit)}
-        <span class="btn__sub">${esc(t.submitSub)}</span>
-      </button>
+      <button type="button" class="fback" data-back hidden>&larr; ${esc(t.stepBack)}</button>
 
       <p class="form-status" role="status" aria-live="polite"></p>
 
@@ -162,9 +197,6 @@ function ctaStack(site, page, loc, opts) {
     <div class="cta-stack">
       <a class="btn btn--call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="${esc(loc)}">
         ${ICONS.phone}<span>${esc(t.callNumber(site.phones.tracking.display))}</span>
-      </a>
-      <a class="btn btn--text" href="sms:${esc(site.phones.sms.e164)}" data-loc="${esc(loc)}">
-        ${ICONS.chat}<span>${esc(t.textInstead)}</span>
       </a>
     </div>
     ${o.note === false ? '' : `<p class="cta-note">${esc(page.intake.callbackSla)}</p>`}`;

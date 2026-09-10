@@ -23,9 +23,7 @@ module.exports = {
     skip: 'Skip to content',
     tagline: 'Utah injury & wrongful death',
     callNow: 'Call Now',
-    textPerson: (name) => `Text ${name}`,
     callNumber: (n) => `Call ${n}`,
-    textInstead: 'Text us instead',
     stickyNote: (hours) => `Free. No fee unless we win. ${hours}.`,
     chipYears: (n) => `${n}+ years in Utah courts`,
     chipReviews: (rating, count) => `${rating} Google (${count} reviews)`,
@@ -48,6 +46,28 @@ module.exports = {
     consent:
       'By submitting, you agree we may call or text you at this number about your case. ' +
       'Message and data rates may apply. Reply STOP to opt out.',
+
+    // Multi-step form. Order is deliberate: the two tap-only questions come
+    // first, so the visitor is committed before being asked to type anything,
+    // and the phone number - the field that decides whether this is a lead -
+    // is last, when they have already invested three answers.
+    stepOf: (n, total) => `Step ${n} of ${total}`,
+    stepBack: 'Back',
+    stepNext: 'Continue',
+    stepIncident: 'What happened?',
+    stepWhen: 'When did it happen?',
+    stepWhenOptions: [
+      'Today or yesterday',
+      'In the past week',
+      'In the past month',
+      'More than a month ago',
+    ],
+    stepName: 'What should we call you?',
+    stepNameHint: 'First name is fine.',
+    stepPhone: 'What number should we call?',
+    stepPhoneHint: 'We call you back — usually within 15 minutes.',
+    stepAria: 'Case review form',
+    stepAnnounce: (n, total, label) => `Step ${n} of ${total}: ${label}`,
     faqHeading: 'Straight answers',
     faqLede: 'The five questions people actually ask on the first call.',
     areaHeading: 'Where we take cases',
@@ -108,9 +128,7 @@ module.exports = {
     skip: 'Ir al contenido',
     tagline: 'Lesiones personales en Utah',
     callNow: 'Llamar ahora',
-    textPerson: () => 'Enviar mensaje',
     callNumber: (n) => `Llame al ${n}`,
-    textInstead: 'Mejor envíe un mensaje',
     stickyNote: (hours) => `Gratis. Si no ganamos, usted no paga. ${hours}.`,
     chipYears: (n) => `${n}+ años de experiencia`,
     chipReviews: (rating, count) => `${rating} Google · ${count} reseñas`,
@@ -134,6 +152,24 @@ module.exports = {
       'Al enviar, usted acepta que le llamemos o le enviemos mensajes de texto a este número ' +
       'sobre su caso. Pueden aplicar tarifas de mensajes y datos. Responda STOP para dejar de ' +
       'recibirlos.',
+
+    stepOf: (n, total) => `Paso ${n} de ${total}`,
+    stepBack: 'Atrás',
+    stepNext: 'Continuar',
+    stepIncident: '¿Qué pasó?',
+    stepWhen: '¿Cuándo pasó?',
+    stepWhenOptions: [
+      'Hoy o ayer',
+      'En la última semana',
+      'En el último mes',
+      'Hace más de un mes',
+    ],
+    stepName: '¿Cómo se llama?',
+    stepNameHint: 'Con su nombre basta.',
+    stepPhone: '¿A qué número le llamamos?',
+    stepPhoneHint: 'Le llamamos nosotros — normalmente en unos 15 minutos.',
+    stepAria: 'Formulario de consulta',
+    stepAnnounce: (n, total, label) => `Paso ${n} de ${total}: ${label}`,
     faqHeading: 'Respuestas claras',
     faqLede: 'Las cinco preguntas que la gente hace de verdad en la primera llamada.',
     areaHeading: 'Dónde tomamos casos',

@@ -36,7 +36,9 @@ function head(site, page) {
     // dropped onto an English confirmation.
     thankYouUrl: page.lang === 'es' ? '/es/gracias/' : '/thank-you/',
     phoneDisplay: site.phones.tracking.display,
-    // Validation and status copy, so lp.js carries no hardcoded English.
+    // Every string lp.js can put on screen. It holds no English of its own,
+    // so a missing key here shows up as a blank label rather than the wrong
+    // language - and the step functions must be present or show() throws.
     i18n: {
       errName: S.errName,
       errPhone: S.errPhone,
@@ -45,6 +47,9 @@ function head(site, page) {
       sending: S.sending,
       sendingBtn: S.sendingBtn,
       errSend: S.errSend(site.phones.tracking.display),
+      // Rendered client-side as the visitor moves through the steps.
+      stepOf: S.stepOf(1, 4).replace('1', '{n}').replace('4', '{total}'),
+      stepAnnounce: S.stepAnnounce('{n}', '{total}', '{label}'),
     },
   };
 
@@ -300,7 +305,7 @@ function proofBlock(site, page) {
     : '';
 
   parts.push(`
-      <div class="who">
+      <div class="who${photo ? ' who--photo' : ''}">
         ${photo}
         <div>
           <h3>${esc(page.t.whoHeading)}</h3>

@@ -27,9 +27,9 @@ settlement figure — the page **omits the block rather than inventing content**
 
 | Problem | What this does instead |
 |---|---|
-| Form had no phone field; "Subject" was required | Four fields: name, **mobile (required)**, what happened, optional city+date. Email is not asked for at all. |
+| Form had no phone field; "Subject" was required | Four steps, one question each: what happened → when → name → **mobile**. Email is not asked for at all. |
 | Form buried ~10,000px down | Call button at ~360px, form card crests the fold on every phone tested. |
-| No sticky call/text bar | Persistent bottom bar: **Call Now / Text Will**, plus "Free. No fee unless we win. Answered 24/7." |
+| No sticky call bar | Persistent full-width **Call** bar, plus "Free. No fee unless we win. Answered 24/7." |
 | Full-bleed portrait behind headline | Flat dark header, high-contrast type. The photo moves to "Who you are calling", after the first CTA. |
 | 4.7 stars with no denominator | Rating renders only with a count, and links to the live Google profile. No count, no rating. |
 | A YouTube-viewer "review" | `site.reviews.quotes` starts **empty**. Real reviews only; the section is omitted otherwise. |
@@ -102,6 +102,36 @@ never dropped onto an English confirmation.
 The whole set is gated on `site.intake.spanishStaffed`. Set it to `false` and
 the `/es/` pages stop being generated — a Spanish page routing to an
 English-only line is worse than no Spanish page.
+
+## The form
+
+Four steps, one question per screen:
+
+1. **What happened?** — tap a card, advances automatically
+2. **When did it happen?** — tap a card, advances automatically
+3. **Your name** — one field
+4. **Your mobile number** — one field, then submit
+
+The order is the point. Both tap-only questions come first, so the visitor has
+answered twice before being asked to type, and the phone number — the field
+that decides whether this is a lead at all — comes last, once they have
+already invested three answers.
+
+**It is progressive enhancement, not a JavaScript app.** The markup is a
+complete working form of real radio inputs and text fields. With JavaScript
+off, broken, or still loading, every question is visible and the form submits
+normally; `lp.js` only layers the stepping on top. Nobody loses a lead because
+a script did not run. Both states are covered by the render tests.
+
+`lp_form_step` fires on each advance with the step number and label, so
+drop-off per step is visible in GTM rather than guessed at.
+
+### No text option
+
+There are no `sms:` links anywhere. The firm does not offer text as a contact
+route, so the sticky bar is a single full-width **Call** button and the hero
+CTA is call-only. The TCPA consent line still covers calls *and* texts,
+because intake may well follow up a caller by text.
 
 ## Getting started
 
@@ -185,8 +215,8 @@ Already wired:
 |---|---|
 | `lp_view` | Page load, with attribution attached to the first event |
 | `lp_call_click` | Any `tel:` tap, with `cta_location` (`sticky_bar`, `hero`, `header`, `footer`) |
-| `lp_text_click` | Any `sms:` tap |
-| `lp_form_start` | First keystroke in a form — a soft signal while lead volume is thin |
+| `lp_form_start` | First interaction with a form — a soft signal while lead volume is thin |
+| `lp_form_step` | Each step advance, with step number and label — shows where people drop |
 | `lp_form_submit` | Validated submit, fired **before** the network call resolves |
 | `lp_lead_thankyou` | Thank-you page load, for anyone preferring a page-load trigger |
 

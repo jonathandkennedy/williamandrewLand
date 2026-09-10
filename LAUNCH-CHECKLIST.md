@@ -6,6 +6,13 @@ non-zero while any remain.
 
 ---
 
+## Checks only a person can close
+
+Several items live in `site.verified` and are cleared by dating them once
+someone has actually checked: `ga4NotDuplicatedInGtm`, `legalLinks`, and
+`resultsOmittedOnPurpose`. Dating one is a statement that it was verified —
+do not date anything just to quiet the hub.
+
 ## Blockers — do not run paid traffic until these are done
 
 ### 1. Attorney review of the legal copy — both languages
@@ -63,9 +70,8 @@ every page.
 All three still empty (`call`, `text`, `formSubmit`). Ads → Goals → Conversions;
 each label is the part after the slash in `AW-18340419166/XXXXXXXX`.
 
-Create three conversion actions:
+Create two conversion actions:
 - **Phone call from LP** — primary
-- **Text from LP** — primary
 - **Form submit from LP** — primary
 
 Until these exist, smart bidding has nothing to optimise toward.
@@ -76,11 +82,9 @@ fires a GA4 tag with this same Measurement ID, every pageview is counted
 twice.** Open the container and keep GA4 in exactly one place — here or in GTM,
 not both. Remove the `ga4Id` from config if GTM is already handling it.
 
-### 5. Confirm the SMS number is real and monitored
-`site.phones.sms` currently mirrors the CallRail number. Confirm it is
-SMS-enabled and that inbound texts reach a device someone actually watches at
-9pm. **A text link into a dead inbox is worse than no text link** — it converts
-an interested person into an ignored one.
+### 5. ~~SMS~~ — not offered
+There are no text links on these pages. The sticky bar is a single full-width
+Call button. Nothing to verify.
 
 ### 5b. TCPA consent wording
 The form now carries an inline consent line in both languages: *"By submitting,
@@ -215,7 +219,6 @@ final URLs and a copy button, and shows these blockers live.
 - [ ] Load each page on a real phone over cellular, not desktop devtools.
 - [ ] Tap Call from the sticky bar. Confirm it rings a human, and confirm the call
       appears in CallRail against the right campaign.
-- [ ] Tap Text. Send one. Confirm it arrives and someone replies.
 - [ ] Submit the form. Confirm the lead lands in Formspree **with `gclid`
       attached**, and time how long the callback actually takes.
 - [ ] Submit one from a `/es/` page. Confirm the alert carries `[ESPANOL]`, that

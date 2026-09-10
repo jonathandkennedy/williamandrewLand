@@ -71,18 +71,18 @@
   }
 
   /* ----------------------------------------------------------------------
-     Call and text tracking.
+     Call tracking.
      Delegated so it covers the sticky bar, the header, the hero and every
-     repeat CTA without per-element wiring.
+     repeat CTA without per-element wiring. There are no sms: links on these
+     pages - the firm does not offer text as a contact route.
      ---------------------------------------------------------------------- */
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="sms:"]');
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
     if (!a) return;
-    var isCall = a.getAttribute('href').indexOf('tel:') === 0;
-    report(isCall ? 'lp_call_click' : 'lp_text_click', isCall ? 'call' : 'text', {
+    report('lp_call_click', 'call', {
       cta_location: a.getAttribute('data-loc') || 'unknown',
       // CallRail rewrites href in place, so read it at click time, not load.
-      phone_number: a.getAttribute('href').replace(/^(tel:|sms:)/, ''),
+      phone_number: a.getAttribute('href').replace(/^tel:/, ''),
     });
   }, true);
 
@@ -116,9 +116,137 @@
     return !message;
   }
 
+  /* --------------------------------------------------------------------
+     Multi-step controller.
+
+     The markup is a complete, working form before this runs: real radios,
+     real inputs, every question visible. This only layers stepping on top,
+     so a script that fails to load costs nobody a lead.
+     -------------------------------------------------------------------- */
+  function fill(template, vars) {
+    return String(template || '').replace(/\{(\w+)\}/g, function (_, k) {
+      return vars[k] == null ? '' : vars[k];
+    });
+  }
+
+  function initSteps(form, T) {
+    var steps = [].slice.call(form.querySelectorAll('[data-step]'));
+    if (steps.length < 2) return null;
+
+    var bar = form.querySelector('[data-bar]');
+    var label = form.querySelector('[data-steplabel]');
+    var progress = form.querySelector('[data-progress]');
+    var back = form.querySelector('[data-back]');
+    var announce = form.querySelector('[data-announce]');
+    var at = 0;
+
+    if (progress) progress.hidden = false;
+
+    function valid(step) {
+      var radios = step.querySelectorAll('input[type="radio"]');
+      var err = step.querySelector('.field__err');
+      var ok = true;
+      var message = '';
+
+      if (radios.length) {
+        ok = [].some.call(radios, function (r) { return r.checked; });
+        message = ok ? '' : T.errIncident;
+      } else {
+        var input = step.querySelector('input[name="name"], input[name="phone"]');
+        if (input) {
+          if (input.name === 'name') {
+            ok = input.value.trim().length >= 2;
+            message = ok ? '' : T.errName;
+          } else {
+            ok = validPhone(input.value);
+            message = ok ? '' : T.errPhone;
+          }
+          if (ok) input.removeAttribute('aria-invalid');
+          else input.setAttribute('aria-invalid', 'true');
+        }
+      }
+      if (err) {
+        err.textContent = message;
+        err.classList.toggle('is-shown', !!message);
+      }
+      return ok;
+    }
+
+    function show(i, moving) {
+      at = i;
+      steps.forEach(function (s, n) { s.hidden = n !== i; });
+      if (bar) bar.style.width = ((i + 1) / steps.length) * 100 + '%';
+      if (label) label.textContent = fill(T.stepOf, { n: i + 1, total: steps.length });
+      if (back) back.hidden = i === 0;
+
+      var text = steps[i].getAttribute('data-label') || '';
+      if (announce) {
+        announce.textContent = fill(T.stepAnnounce, { n: i + 1, total: steps.length, label: text });
+      }
+
+      if (moving) {
+        // Focus the first control so a keyboard or screen-reader user lands
+        // in the question rather than at the top of the form. Not on first
+        // paint, which would yank the page down to the form on load.
+        var focusable = steps[i].querySelector('input:not([type="radio"]), input[type="radio"]');
+        if (focusable) {
+          try { focusable.focus({ preventScroll: true }); } catch (e) { focusable.focus(); }
+        }
+      }
+    }
+
+    function go(i) {
+      if (i > at && !valid(steps[at])) return;
+      if (i < 0 || i >= steps.length) return;
+      report('lp_form_step', null, {
+        form_id: form.id,
+        step: i + 1,
+        step_label: steps[i].getAttribute('data-label') || '',
+      });
+      show(i, true);
+    }
+
+    // A tapped choice is an answer; advance without making them find a button.
+    form.addEventListener('change', function (e) {
+      if (e.target.type !== 'radio') return;
+      var step = e.target.closest('[data-step]');
+      if (!step || steps.indexOf(step) !== at) return;
+      valid(step);
+      setTimeout(function () { go(at + 1); }, 180);
+    });
+
+    form.addEventListener('click', function (e) {
+      if (e.target.closest('.fnext')) { e.preventDefault(); go(at + 1); }
+      else if (e.target.closest('[data-back]')) { e.preventDefault(); go(at - 1); }
+    });
+
+    // Enter in a text step advances rather than submitting a half-filled form.
+    form.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      if (e.target.tagName !== 'INPUT' || e.target.type === 'radio') return;
+      if (at < steps.length - 1) { e.preventDefault(); go(at + 1); }
+    });
+
+    show(0, false);
+
+    return {
+      validateAll: function () {
+        for (var i = 0; i < steps.length; i++) {
+          if (!valid(steps[i])) { show(i, true); return false; }
+        }
+        return true;
+      },
+    };
+  }
+
   function initForm(form) {
     var status = form.querySelector('.form-status');
-    var submit = form.querySelector('.btn--submit');
+    var T = CFG.i18n || {};
+    var steps = form.hasAttribute('data-steps') ? initSteps(form, T) : null;
+    // The last .btn--submit is the real one; earlier ones are step "Continue"
+    // buttons that never submit.
+    var submits = form.querySelectorAll('button[type="submit"]');
+    var submit = submits[submits.length - 1];
     var submitLabel = submit ? submit.innerHTML : '';
     var started = false;
 
@@ -159,28 +287,23 @@
       if (honeypot && honeypot.value.trim()) return;
 
       var ok = true;
-      var T = CFG.i18n || {};
-      var nameField = form.querySelector('[data-field="name"]');
-      var phoneField = form.querySelector('[data-field="phone"]');
-      var typeField = form.querySelector('[data-field="incident"]');
-
-      if (nameField) {
-        var nameVal = nameField.querySelector('input').value.trim();
-        ok = setError(nameField, nameVal.length < 2 ? T.errName : '') && ok;
-      }
-      if (phoneField) {
-        var phoneVal = phoneField.querySelector('input').value;
-        ok = setError(phoneField, validPhone(phoneVal) ? '' : T.errPhone) && ok;
-      }
-      if (typeField) {
-        var typeVal = typeField.querySelector('select').value;
-        ok = setError(typeField, typeVal ? '' : T.errIncident) && ok;
+      if (steps) {
+        ok = steps.validateAll();
+      } else {
+        var nameField = form.querySelector('[data-field="name"]');
+        var phoneField = form.querySelector('[data-field="phone"]');
+        if (nameField) {
+          var nameVal = nameField.querySelector('input').value.trim();
+          ok = setError(nameField, nameVal.length < 2 ? T.errName : '') && ok;
+        }
+        if (phoneField) {
+          var phoneVal = phoneField.querySelector('input').value;
+          ok = setError(phoneField, validPhone(phoneVal) ? '' : T.errPhone) && ok;
+        }
       }
 
       if (!ok) {
         show('error', T.errFix);
-        var firstBad = form.querySelector('[aria-invalid="true"]');
-        if (firstBad) { firstBad.focus(); firstBad.scrollIntoView({ block: 'center' }); }
         return;
       }
 
@@ -198,6 +321,7 @@
       // without opening the message.
       data._subject =
         'NEW LEAD: ' + (data.name || 'no name') + ' - ' + (data.incident || 'type not given') +
+        (data.crash_when ? ' (' + data.crash_when + ')' : '') +
         ' - ' + (data.phone || 'no phone') +
         (data.language === 'es' ? ' [ESPANOL]' : '');
 

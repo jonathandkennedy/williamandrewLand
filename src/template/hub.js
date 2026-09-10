@@ -98,22 +98,40 @@ function render(site, pages, audit) {
     statusRow('Google Tag Manager', t.gtmId, !!t.gtmId),
     statusRow('Google Ads', t.googleAdsId, !!t.googleAdsId),
     statusRow('GA4', t.ga4Id, !!t.ga4Id, 'check GTM does not also fire this'),
-    statusRow('Ads conversion labels', `${labelsSet.length} of 3 set`, labelsSet.length === 3),
+    statusRow('Ads conversion labels', `${labelsSet.length} of 2 set`, labelsSet.length === 2),
     statusRow('CallRail swap', t.callRailSwapScript ? 'installed' : '', !!t.callRailSwapScript),
-    statusRow('Tracking number', site.phones.tracking.display, true),
-    statusRow('SMS number', site.phones.sms.display, true, 'must be SMS-enabled and monitored'),
+    statusRow('Tracking number', site.phones.tracking.display, true, 'call only — no text route'),
     statusRow('Form endpoint', site.formEndpoint, !!site.formEndpoint),
     statusRow('Google reviews link', site.reviews.profileUrl, !!site.reviews.profileUrl),
     statusRow('Attorney headshot', site.bio.photo, !!site.bio.photo),
   ].join('');
 
-  const blockers = audit.blockers.length
-    ? `<ul>${audit.blockers.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>`
-    : '<p class="allclear">No blockers. Safe to spend.</p>';
+  const nb = audit.blockers.length;
+  const nw = audit.warnings.length;
+  const ready = nb === 0;
 
-  const warnings = audit.warnings.length
-    ? `<ul>${audit.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`
-    : '<p class="allclear">None.</p>';
+  // One line that answers the only question this panel exists for: can we
+  // spend today? Detail is a click away rather than a wall of red, but it is
+  // never hidden - a clean hub has to mean the work is done, not that the
+  // list got shorter.
+  const summary = ready
+    ? (nw === 0
+        ? 'Ready to spend. Nothing outstanding.'
+        : `Ready to spend. ${nw} item${nw === 1 ? '' : 's'} still worth closing.`)
+    : `${nb} blocker${nb === 1 ? '' : 's'} before spending${nw ? `, plus ${nw} to close` : ''}.`;
+
+  const list = (items, kind) =>
+    items.length
+      ? `<ul class="issues issues--${kind}">${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`
+      : '';
+
+  const detail = (nb + nw)
+    ? `<details class="issuebox"${nb ? ' open' : ''}>
+         <summary>${nb ? 'Blockers and open items' : 'Open items'} (${nb + nw})</summary>
+         ${nb ? `<h3>Blocking &mdash; do not spend until these are done</h3>${list(audit.blockers, 'block')}` : ''}
+         ${nw ? `<h3>Worth closing</h3>${list(audit.warnings, 'warn')}` : ''}
+       </details>`
+    : '';
 
   return `<!doctype html>
 <html lang="en">
@@ -178,10 +196,18 @@ ${brandTokens(site)}
   .pill--ok { background: #e8f5ee; color: #1f7a4d; }
   .pill--no { background: #fdecea; color: #a5281b; }
 
-  .blockers { border-left: 4px solid var(--accent); }
-  .blockers ul, .warnings ul { margin: 0; padding-left: 20px; }
-  .blockers li, .warnings li { margin-bottom: 7px; line-height: 1.45; font-size: 13.5px; }
-  .allclear { margin: 0; color: #1f7a4d; font-weight: 600; font-size: 13.5px; }
+  .readiness { border-left: 4px solid #1f7a4d; }
+  .readiness.is-blocked { border-left-color: var(--accent); }
+  .readiness__line { display: flex; align-items: center; gap: 9px; margin: 0; font-size: 15px; }
+  .readiness .dot { width: 10px; height: 10px; border-radius: 50%; background: #1f7a4d; flex: none; }
+  .readiness.is-blocked .dot { background: var(--accent); }
+
+  .issuebox { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .issuebox summary { cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--muted); padding: 4px 0; }
+  .issuebox h3 { margin: 12px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .issues { margin: 0; padding-left: 20px; }
+  .issues li { margin-bottom: 7px; line-height: 1.45; font-size: 13.5px; }
+  .issues--block li::marker { color: var(--accent); }
 
   footer.foot { color: var(--muted); font-size: 12.5px; line-height: 1.55; padding-bottom: 40px; }
 </style>
@@ -203,15 +229,12 @@ ${brandTokens(site)}
 
 <main class="wrap">
 
-  <div class="cols">
-    <div class="panel blockers">
-      <h2>Launch blockers</h2>
-      ${blockers}
-    </div>
-    <div class="panel warnings">
-      <h2>Warnings</h2>
-      ${warnings}
-    </div>
+  <div class="panel readiness ${ready ? 'is-ready' : 'is-blocked'}">
+    <p class="readiness__line">
+      <span class="dot" aria-hidden="true"></span>
+      <strong>${esc(summary)}</strong>
+    </p>
+    ${detail}
   </div>
 
   <div class="panel">
