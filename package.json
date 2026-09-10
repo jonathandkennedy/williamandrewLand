@@ -1,0 +1,13 @@
+{
+  "name": "williamandrews-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mobile-first PPC landing pages for William Enoch Andrews Injury Lawyer, PC",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node build.js && node serve.js",
+    "check": "node build.js --check"
+  },
+  "engines": { "node": ">=18" }
+}

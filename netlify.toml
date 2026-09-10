@@ -1,0 +1,29 @@
+# Netlify deploy config.
+# Any static host works; this one is here because Netlify Forms is the
+# quickest way to get a working intake endpoint if the firm has no CRM
+# webhook ready on day one.
+
+[build]
+  command = "node build.js"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Paid-only pages must never be indexed - they would cannibalise the
+    # main site's organic rankings for the same terms.
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Trailing-slash tolerance, so an ad final URL without the slash still lands.
+[[redirects]]
+  from = "/cache-county-truck-accident"
+  to = "/cache-county-truck-accident/"
+  status = 301
