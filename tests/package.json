@@ -1,0 +1,7 @@
+{
+  "name": "wa-lander-tests",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node form-e2e.mjs && node kw-e2e.mjs" },
+  "dependencies": { "playwright": "^1.56.1" }
+}

@@ -1,0 +1,174 @@
+{
+  "truck-accident": {
+    "caseType": "truck",
+    "titlePat": "{City} Truck Accident Lawyer | Free Case Review",
+    "descPat": "Hurt in a truck or semi crash in {City}, Utah? Talk to an injury attorney today. Free, confidential, no fee unless we win. We come to you.",
+    "h1pre": "Injured in a", "h1post": "truck crash?",
+    "sub": "Free and confidential. No fee unless we win. The trucking company started building its file the day of the crash. You should have someone building yours.",
+    "q1": "What kind of truck?",
+    "o1": ["Semi or tractor-trailer", "Amazon, UPS or FedEx", "Dump, box or work truck", "Someone died in the crash", "Not sure"],
+    "diffH": "A truck case is not a big car case",
+    "diffL": "Different rules, different evidence, and a defence team already working while you are still in the emergency room.",
+    "diff": [
+      ["The evidence has a shelf life", "The truck records what it was doing — engine control module data, the electronic logging device, dash and cab cameras, dispatch messages. Some of it is overwritten on a timer. If nobody demands it in writing, it is gone and no one has to explain why."],
+      ["They send people to the scene", "Large carriers keep rapid-response teams under contract. An investigator and often a lawyer can be at the wreck the same day, building the file long before you have been discharged."],
+      ["More than one company can owe you", "The driver is one defendant. The motor carrier, the broker who arranged the load, the company that loaded it and the shop that serviced the brakes can each be another."],
+      ["They answer to federal rules", "Interstate carriers are bound by FMCSA rules: hours-of-service limits, driver qualification files, drug and alcohol testing, inspection and maintenance records. A violation in those files is not paperwork. It is the case."],
+      ["The policies are much larger", "Federal minimums for interstate freight start at $750,000 and run into the millions for tankers and hazardous loads. Bigger coverage means the insurer fights harder and earlier."],
+      ["Utah splits the fault", "Utah reduces what you recover by your share of the blame and bars recovery once your share reaches 50%. Shifting a slice of fault onto you is the cheapest move the carrier has."]
+    ],
+    "hrsH": "What we do in the first 72 hours",
+    "hrsL": "A truck case is an evidence race. This part cannot wait for you to feel better.",
+    "hrs": [
+      ["Send a spoliation letter", "A written demand that the carrier preserve the ECM download, the ELD logs, camera footage, the driver qualification file, dispatch records and the truck itself. Once served, \"we lost it\" stops being free."],
+      ["Get to the truck and the scene", "We move to inspect the tractor and trailer before they are repaired or released, and to photograph the road while the marks are still there."],
+      ["Identify every defendant", "We pull the police report and the carrier's USDOT filings to work out who the driver really worked for, who brokered the load, who loaded it and who maintained it."],
+      ["Stop the recorded statement", "The carrier's adjuster will call, friendly and fast, and ask you to describe the crash while you are on pain medication. From the day we are hired, those calls come to us."],
+      ["Get treatment and losses documented", "We point you to doctors who will actually see you, sort out who pays while the claim runs, and start documenting wage loss from day one."]
+    ],
+    "faq": [
+      ["What if the crash was partly my fault?", "Call anyway. Utah reduces your recovery by your percentage of fault rather than wiping it out, and you can still recover as long as your share stays under 50%. People are also wrong about their own fault surprisingly often, usually against themselves — whether a driver had been on the road too long, or the brakes were out of adjustment, is not something you could see from your seat."],
+      ["The trucking company already offered me money. Should I take it?", "Not before someone reads the file. An early offer arrives before anyone knows whether your injuries settle down, and it is priced to close the claim cheaply. Accepting it usually ends the case for good. It also tends to mean they already know something about their driver or their records they would rather not hand over."],
+      ["Does my immigration status affect my case?", "No. Anyone injured by someone else's negligence in Utah can bring a claim, whatever their immigration status. No Social Security number or driver's licence is required. What you tell us is confidential and we do not report to immigration. This is the most common reason good cases never get made."],
+      ["What does this cost me?", "Nothing up front and nothing unless we win. The fee is a percentage of what we recover, agreed in writing before we start, and case costs come out of the recovery rather than your pocket. The first conversation is free and carries no obligation."],
+      ["Should I talk to the trucking company's insurer?", "Not before you have spoken to a lawyer. A recorded statement taken days after a crash, while you are medicated and do not yet know how badly you are hurt, is used to lock you into a version of events and to move fault onto you. You can simply say you have counsel and give them our number."]
+    ],
+    "kw": {
+      "truck accident lawyer": {"pre":"Injured in a","post":"truck crash?"},
+      "truck accident attorney": {"pre":"Injured in a","post":"truck crash?"},
+      "semi truck accident lawyer": {"pre":"Injured in a","post":"semi truck crash?"},
+      "18 wheeler accident lawyer": {"pre":"Injured in an","post":"18-wheeler crash?"},
+      "big rig accident lawyer": {"pre":"Injured in a","post":"big rig crash?"},
+      "trucking accident lawyer": {"pre":"Injured in a","post":"trucking crash?"}
+    }
+  },
+
+  "car-accident": {
+    "caseType": "car",
+    "titlePat": "{City} Car Accident Lawyer | Free Case Review",
+    "descPat": "Hurt in a car crash in {City}, Utah? Find out today whether you have a claim. Free, confidential, no fee unless we win. We come to you.",
+    "h1pre": "Hurt in a", "h1post": "car crash?",
+    "sub": "Free and confidential. No fee unless we win. Tell us what happened and we will tell you straight whether you have a claim.",
+    "q1": "What happened?",
+    "o1": ["Rear-ended", "T-boned at an intersection", "Head-on or wrong-way", "Hit-and-run or uninsured driver", "Someone died in the crash", "Not sure"],
+    "diffH": "What Utah's no-fault rules actually mean",
+    "diffL": "\"No-fault\" does not mean nobody is responsible. It means your own policy pays first, and there is a line you have to cross before you can claim against the driver who hit you.",
+    "diff": [
+      ["Your own PIP pays the first bills", "Utah policies carry personal injury protection covering early treatment regardless of who caused the crash. Using it admits nothing and does not use up your claim."],
+      ["There is a threshold to cross", "To claim against the at-fault driver for pain and suffering, Utah requires a certain level of harm — a medical-expense threshold, or a permanent injury, disfigurement or dismemberment. Whether you have crossed it is a legal question, not a feeling."],
+      ["The adjuster is not neutral", "The other driver's insurer is not a referee. An early offer, made before anyone knows whether your back settles down, is priced to close the file cheaply while you are worried about the rent."],
+      ["Uninsured and hit-and-run still have a route", "If the other driver has no coverage or drove off, your own uninsured and underinsured motorist coverage can step in. It is a claim against your own insurer, and they defend it like any other."],
+      ["Fault gets shifted onto you", "Utah reduces recovery by your share of the blame and bars it at 50%. Expect the argument that you stopped short, or were going too fast, or should have seen it coming."],
+      ["The clock is shorter than people think", "Deadlines vary by claim type, and a crash involving a city, county or state vehicle can require formal notice far sooner. Ask early rather than finding out late."]
+    ],
+    "hrsH": "What we do in the first week",
+    "hrsL": "Most of the damage to a car-crash claim is done in the first few days, quietly.",
+    "hrs": [
+      ["Open your PIP and get you treated", "We get your own coverage opened so treatment starts now, and point you to doctors who will see a crash patient quickly."],
+      ["Preserve what disappears", "Intersection and business camera footage is usually overwritten within days. We send preservation letters and get someone to the scene while there is still something to photograph."],
+      ["Take the adjuster calls", "From the day we are hired, the other insurer talks to us. No recorded statement, and no signing a medical authorisation that hands over your entire history."],
+      ["Find every layer of coverage", "The at-fault policy, your own UM/UIM, any umbrella policy, and whether the driver was working at the time — which can bring an employer's much larger policy into play."],
+      ["Document the loss properly", "Wage records, the treatment you actually needed, and what you can no longer do. A file built like this is what makes an insurer move off its first number."]
+    ],
+    "faq": [
+      ["I was told Utah is a no-fault state. Do I even have a claim?", "Very possibly. No-fault only decides who pays the first medical bills. Once your injuries meet Utah's threshold you can pursue the at-fault driver for everything else — ongoing treatment, lost income and the pain. This is the single most common reason people talk themselves out of a real claim."],
+      ["What if the crash was partly my fault?", "Call anyway. Utah reduces recovery by your share of the fault rather than eliminating it, and you can still recover while your share stays under 50%. People routinely overestimate their own fault in the days after a crash, when they are shaken and replaying it."],
+      ["The insurer already offered me a settlement. Should I take it?", "Not before someone reads the file. A first offer is made before anyone knows whether your neck or back settles down, and signing it usually ends the claim permanently. If your treatment is still going, you cannot yet know what the claim is worth — and neither can they."],
+      ["Does my immigration status affect my case?", "No. Anyone injured by someone else's negligence in Utah can bring a claim, whatever their immigration status. No Social Security number or driver's licence is required, and a passenger with no insurance of their own can still recover. What you tell us is confidential and we do not report to immigration."],
+      ["What does this cost me?", "Nothing up front and nothing unless we win. The fee is a percentage of the recovery, agreed in writing before we start, and costs come out of the recovery. If we think you can handle the claim yourself and keep more of it, we will say so."]
+    ],
+    "kw": {
+      "car accident lawyer": {"pre":"Hurt in a","post":"car crash?"},
+      "car accident attorney": {"pre":"Hurt in a","post":"car crash?"},
+      "auto accident lawyer": {"pre":"Hurt in an","post":"auto accident?"},
+      "personal injury lawyer": {"pre":"Injured in","post":"and not sure what to do?"},
+      "personal injury attorney": {"pre":"Injured in","post":"and not sure what to do?"},
+      "accident lawyer": {"pre":"Hurt in a","post":"crash?"},
+      "injury lawyer": {"pre":"Injured in a","post":"crash?"}
+    }
+  },
+
+  "motorcycle-accident": {
+    "caseType": "motorcycle",
+    "titlePat": "{City} Motorcycle Accident Lawyer | Free Review",
+    "descPat": "Down on a bike in {City}, Utah? Talk to a motorcycle accident attorney today. Free, confidential, no fee unless we win. We come to you.",
+    "h1pre": "Went down on a bike in", "h1post": "",
+    "sub": "Free and confidential. No fee unless we win. The other driver's insurer will blame the rider by default. We start from what the evidence actually shows.",
+    "q1": "What happened?",
+    "o1": ["A car turned left in front of me", "Someone changed lanes into me", "Rear-ended at a light", "Road hazard or debris", "Someone died in the crash", "Not sure"],
+    "diffH": "Riders get blamed first. That is the fight.",
+    "diffL": "Motorcycle claims are not car claims with a smaller vehicle. The injuries are worse, the coverage is thinner, and the bias starts before anyone looks at the evidence.",
+    "diff": [
+      ["The bias is real and it is early", "Adjusters and jurors arrive assuming the rider was speeding or weaving. Nothing in the file corrects that on its own — it takes scene evidence, sightline analysis and often a reconstruction."],
+      ["Left-turn cases turn on sightlines", "The most common serious motorcycle crash is a car turning left across a rider's path. \"I never saw him\" is not a defence, but it becomes one if nobody documents what the driver could actually see."],
+      ["Injuries are graver and slower", "Fractures, road rash, degloving and head injuries need months before anyone can value them. An early settlement almost always closes the claim below what the treatment ends up costing."],
+      ["Gear gets used against you", "Utah does not require a helmet over 21, and not wearing one is not negligence in itself. Expect the argument anyway, and expect it applied to your gear, your exhaust and your bike's appearance."],
+      ["Coverage runs out fast", "Serious rider injuries routinely exceed the at-fault driver's policy. Finding UM/UIM, household policies and any employer coverage is often the difference between a policy limit and the real number."],
+      ["Utah splits the fault", "Utah reduces recovery by your share of the blame and bars it at 50%. On a bike, the fault argument is where most of the money is won or lost."]
+    ],
+    "hrsH": "What we do in the first 72 hours",
+    "hrsL": "Bike cases are won on scene evidence that stops existing within days.",
+    "hrs": [
+      ["Preserve the bike before it is scrapped", "The bike itself is evidence — damage pattern, gouge marks, final rest position. Once an insurer totals it and sends it to salvage, that is gone. We move first."],
+      ["Photograph sightlines from the driver's seat", "In a left-turn case, what the driver could see from where they sat is often the whole case. That has to be documented before landscaping, signage or seasonal light changes."],
+      ["Find the cameras", "Intersection, business and doorbell footage is overwritten in days. We canvass and send preservation letters immediately."],
+      ["Take the adjuster calls", "From the day we are hired, the other insurer talks to us. No recorded statement while you are medicated and no signing a blanket medical release."],
+      ["Get you to doctors who treat riders", "Orthopaedic and wound care that documents properly, plus the head-injury screening that routine ER visits often skip."]
+    ],
+    "faq": [
+      ["I wasn't wearing a helmet. Does that end my claim?", "No. Utah requires a helmet only under 21, and not wearing one is not negligence by itself. The insurer will still raise it, and it can affect head-injury damages specifically, but it does not bar a claim for the rest — and it has nothing to do with who caused the crash."],
+      ["The driver says they never saw me. Is that a defence?", "No — a driver turning across traffic has to make sure the way is clear. \"I never saw him\" is an admission of failing to look, not an excuse. But it only lands that way if someone documents the sightlines while they still look the way they did that day."],
+      ["What if the crash was partly my fault?", "Call anyway. Utah reduces recovery by your share of the fault rather than eliminating it, and you can still recover while your share stays under 50%. Riders routinely blame themselves for things that were not theirs to control."],
+      ["Does my immigration status affect my case?", "No. Anyone injured by someone else's negligence in Utah can bring a claim, whatever their immigration status. No Social Security number or driver's licence is required. What you tell us is confidential and we do not report to immigration."],
+      ["What does this cost me?", "Nothing up front and nothing unless we win. The fee is a percentage of what we recover, agreed in writing before we start, and case costs come out of the recovery rather than your pocket."]
+    ],
+    "kw": {
+      "motorcycle accident lawyer": {"pre":"Went down on a bike in","post":""},
+      "motorcycle accident attorney": {"pre":"Went down on a bike in","post":""},
+      "motorcycle injury lawyer": {"pre":"Hurt riding in","post":""},
+      "bike accident lawyer": {"pre":"Went down on a bike in","post":""},
+      "biker lawyer": {"pre":"Went down on a bike in","post":""}
+    }
+  },
+
+  "wrongful-death": {
+    "caseType": "wrongful-death",
+    "titlePat": "{City} Wrongful Death Lawyer | Utah",
+    "descPat": "Lost a family member in a crash in {City}, Utah? Speak to a wrongful death attorney when you are ready. Free and confidential. We come to you.",
+    "h1pre": "Did your family lose someone in", "h1post": "?",
+    "sub": "We are sorry. When you are ready, one call will tell you what the deadlines are and what your family does not have to deal with. Free and confidential.",
+    "q1": "What happened?",
+    "o1": ["Truck or semi crash", "Car crash", "Motorcycle crash", "Pedestrian or cyclist", "Something else"],
+    "diffH": "What a Utah wrongful death claim involves",
+    "diffL": "You do not need to understand any of this today. It is here so you know what the conversation will cover when you are ready to have it.",
+    "diff": [
+      ["Who is allowed to bring it", "Utah limits a wrongful death claim to certain family members and to the personal representative of the estate. Sorting out who brings it, and on whose behalf, is one of the first things we handle so the family does not have to negotiate it."],
+      ["The deadline is shorter than for injury", "Utah gives less time to file a wrongful death claim than an ordinary injury claim, and far less again when a government vehicle or public entity is involved. This is the one part that genuinely cannot wait."],
+      ["Evidence still disappears on a timer", "If a commercial truck was involved, its electronic data, the driver's logs and any camera footage are subject to the same retention windows as in any other case. Grief does not pause them."],
+      ["The claim covers more than bills", "Funeral and medical expenses, the income and benefits your family has lost, and the loss of the person themselves — their care, their companionship, what they did for the household."],
+      ["There may be a separate estate claim", "What your family member went through between the crash and their death can be a distinct claim brought by the estate, on top of the family's own."],
+      ["You are not signing anything today", "A first conversation is a conversation. Many families call once to understand the deadlines, then call back weeks later. That is completely normal and it is fine."]
+    ],
+    "hrsH": "What we take off your hands",
+    "hrsL": "The parts that have deadlines, so your family can deal with the parts that matter.",
+    "hrs": [
+      ["The insurers stop calling you", "Every adjuster, from every company involved, is redirected to us from the day we are hired. You should not be taking claims calls this week."],
+      ["We preserve the evidence", "Preservation letters go out immediately — vehicle data, driver records, camera footage, and the vehicles themselves before they are released or repaired."],
+      ["We handle the estate paperwork", "A wrongful death claim usually needs a personal representative appointed. We do that work rather than sending your family to a second lawyer."],
+      ["We find everyone responsible", "Not just the driver. The company they worked for, the broker, the maintenance shop, or whoever was responsible for the road."],
+      ["We deal with the bills", "Medical liens, funeral costs and health-insurer reimbursement claims all arrive at once and are all negotiable. Nobody in your family should be answering those letters."]
+    ],
+    "faq": [
+      ["It just happened. Is it too early to call?", "No, and there is no pressure attached to calling. Some families want to understand the deadlines and then take weeks before doing anything else. That is a completely reasonable way to handle it. The only genuinely time-sensitive part is preserving evidence, and we can start that without asking anything else of you."],
+      ["Does our immigration status affect the claim?", "No. A family can bring a wrongful death claim whatever their immigration status, and the status of the person who died does not matter either. What we discuss is confidential and we do not report to immigration."],
+      ["Will our family have to go to court?", "Most of these resolve without a trial. Filing a case is not the same as trying one, and much of what happens is paperwork and negotiation your family never has to attend. If it does need a courtroom, you will know long before it gets there."],
+      ["What does this cost?", "Nothing up front and nothing unless there is a recovery. The fee is a percentage agreed in writing beforehand, and case costs come out of the recovery, not out of your family."],
+      ["Who will we actually be dealing with?", "A real person answers the phone, day or night. William Andrews handles these cases personally rather than passing them to a case manager."]
+    ],
+    "kw": {
+      "wrongful death lawyer": {"pre":"Did your family lose someone in","post":"?"},
+      "wrongful death attorney": {"pre":"Did your family lose someone in","post":"?"},
+      "fatal accident lawyer": {"pre":"Did your family lose someone in","post":"?"}
+    }
+  }
+}

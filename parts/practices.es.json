@@ -1,0 +1,137 @@
+{
+  "truck-accident": {
+    "title": "Abogado de Accidentes de Tráiler en {City} | Consulta Gratis",
+    "h1pre": "¿Lesionado en un", "h1post": "accidente de tráiler?",
+    "sub": "Gratis y confidencial. Si no ganamos, usted no paga nada. La compañía de transporte empezó a armar su expediente el día del accidente. Usted debería tener a alguien armando el suyo.",
+    "q1": "¿Qué tipo de camión?",
+    "o1": ["Tráiler o camión de carga", "Amazon, UPS o FedEx", "Camión de volteo, de caja o de trabajo", "Alguien falleció en el accidente", "No estoy seguro"],
+    "diffH": "Un caso de tráiler no es un choque de carro grande",
+    "diffL": "Otras reglas, otra evidencia, y un equipo de defensa que ya está trabajando mientras usted sigue en la sala de emergencias.",
+    "diff": [
+      ["La evidencia se borra sola", "El tráiler graba lo que estaba haciendo: el módulo del motor, el registro electrónico de horas, las cámaras de la cabina, los mensajes con el despachador. Parte de eso se borra sola con el tiempo. Si nadie la exige por escrito, desaparece y nadie tiene que dar explicaciones."],
+      ["Ellos mandan gente al lugar", "Las compañías grandes tienen equipos de respuesta rápida por contrato. Un investigador, y muchas veces un abogado, puede llegar el mismo día y armar su expediente mucho antes de que a usted le den de alta."],
+      ["Más de una empresa puede deberle", "El chofer es solo uno. La compañía de transporte, el bróker que consiguió la carga, quien cargó el tráiler y el taller que revisó los frenos pueden ser otros."],
+      ["Están sujetos a reglas federales", "Las compañías interestatales responden ante la FMCSA: límites de horas de manejo, expediente del chofer, pruebas de alcohol y drogas, y registros de mantenimiento. Una violación en esos archivos no es papeleo. Es el caso."],
+      ["Las pólizas son mucho más grandes", "Los mínimos federales para carga interestatal empiezan en $750,000 y llegan a millones para tanques y materiales peligrosos. Más cobertura significa que la aseguradora pelea más duro y desde más temprano."],
+      ["Utah reparte la culpa", "Utah reduce lo que usted recibe según su porcentaje de culpa, y lo elimina cuando esa parte llega al 50%. Echarle un poco de culpa a usted es la movida más barata que tienen."]
+    ],
+    "hrsH": "Lo que hacemos en las primeras 72 horas",
+    "hrsL": "Un caso de tráiler es una carrera por la evidencia. Esta parte no puede esperar a que usted se sienta mejor.",
+    "hrs": [
+      ["Enviamos una carta de preservación", "Una exigencia por escrito de que conserven los datos del módulo del motor, los registros de horas, el video de las cámaras, el expediente del chofer y el tráiler mismo. Una vez entregada, «se nos perdió» deja de salir gratis."],
+      ["Vamos al tráiler y al lugar", "Actuamos para inspeccionar el tractor y la caja antes de que los reparen o los entreguen, y para fotografiar el camino mientras todavía se ven las marcas."],
+      ["Identificamos a todos los responsables", "Pedimos el reporte policial y los registros USDOT para determinar para quién trabajaba realmente el chofer, quién consiguió la carga, quién la cargó y quién dio mantenimiento."],
+      ["Detenemos la declaración grabada", "El ajustador le va a llamar, amable y rápido, y le va a pedir que describa el accidente mientras anda con medicamento para el dolor. Desde el día que nos contrata, esas llamadas llegan a nosotros."],
+      ["Documentamos atención médica y pérdidas", "Le indicamos médicos que sí lo van a atender, resolvemos quién paga mientras avanza el reclamo y empezamos a documentar el salario perdido desde el primer día."]
+    ],
+    "faq": [
+      ["¿Y si el accidente fue en parte mi culpa?", "Llame de todos modos. Utah reduce lo que usted recibe según su porcentaje de culpa en lugar de quitárselo todo, y todavía puede recuperar algo mientras esa parte se mantenga por debajo del 50%. Además, la gente se echa la culpa a sí misma con mucha más frecuencia de la que debería: si el chofer llevaba demasiadas horas manejando, o si los frenos estaban mal ajustados, no es algo que usted pudiera ver desde su asiento."],
+      ["La compañía ya me ofreció dinero. ¿Lo acepto?", "No sin que alguien revise el caso primero. Una oferta temprana llega antes de que se sepa si sus lesiones van a sanar, y está calculada para cerrar el reclamo barato. Aceptarla normalmente termina el caso para siempre. Además, casi siempre significa que ya saben algo de su chofer o de sus registros que preferirían no entregar."],
+      ["¿Mi estatus migratorio afecta mi caso?", "No. Cualquier persona lesionada por la negligencia de otro en Utah puede presentar un reclamo, sin importar su estatus migratorio. No se necesita número de seguro social ni licencia de manejo. Lo que usted nos cuente es confidencial y no le reportamos a inmigración. Esta es la razón número uno por la que casos buenos nunca se presentan."],
+      ["¿Cuánto me cuesta?", "Nada por adelantado y nada si no ganamos. Los honorarios son un porcentaje de lo que recuperemos, acordado por escrito antes de empezar, y los gastos del caso salen de la recuperación, no de su bolsillo. La primera plática es gratis y no lo compromete a nada."],
+      ["¿Debo hablar con el seguro de la compañía?", "No antes de hablar con un abogado. Una declaración grabada tomada a los pocos días, cuando usted anda medicado y todavía no sabe qué tan graves son sus lesiones, se usa para amarrarlo a una versión y para pasarle la culpa. Puede simplemente decir que tiene abogado y darles nuestro número."]
+    ]
+  },
+
+  "car-accident": {
+    "title": "Abogado de Accidentes de Carro en {City} | Consulta Gratis",
+    "h1pre": "¿Lesionado en un", "h1post": "accidente de carro?",
+    "sub": "Gratis y confidencial. Si no ganamos, usted no paga nada. Cuéntenos qué pasó y le decimos con franqueza si tiene un reclamo.",
+    "q1": "¿Qué pasó?",
+    "o1": ["Me chocaron por detrás", "Choque en una intersección", "Choque de frente o en sentido contrario", "Se dio a la fuga o no tenía seguro", "Alguien falleció en el accidente", "No estoy seguro"],
+    "diffH": "Qué significan de verdad las reglas de Utah",
+    "diffL": "En Utah su propio seguro paga primero, sin importar quién tuvo la culpa. Eso no quiere decir que nadie sea responsable: quiere decir que hay una línea que cruzar antes de poder reclamarle al conductor que lo chocó.",
+    "diff": [
+      ["Su cobertura PIP paga las primeras cuentas", "Las pólizas de Utah incluyen protección contra lesiones (PIP) que cubre la atención médica inicial sin importar quién causó el choque. Usarla no admite nada y no le gasta su reclamo."],
+      ["Hay un límite que hay que cruzar", "Para reclamarle al conductor culpable por dolor y sufrimiento, Utah exige cierto nivel de daño: un monto en gastos médicos, o una lesión permanente, desfiguración o pérdida de un miembro. Si usted ya lo cruzó es una pregunta legal, no una impresión."],
+      ["El ajustador no es imparcial", "La aseguradora del otro conductor no es un árbitro. Una oferta temprana, hecha antes de que se sepa si su espalda va a sanar, está calculada para cerrar el expediente barato mientras usted anda preocupado por la renta."],
+      ["Si se dio a la fuga o no tenía seguro, hay salida", "Si el otro conductor no tenía cobertura o se fue del lugar, su propia cobertura contra conductores sin seguro puede responder. Es un reclamo contra su propia aseguradora, y ellos lo defienden como cualquier otro."],
+      ["Le van a echar la culpa a usted", "Utah reduce la recuperación según su parte de culpa y la elimina en el 50%. Espere el argumento de que usted frenó de repente, o iba rápido, o debió haberlo visto venir."],
+      ["El plazo es más corto de lo que la gente cree", "Los plazos cambian según el tipo de reclamo, y un choque con un vehículo de la ciudad, del condado o del estado puede exigir un aviso formal mucho antes. Pregunte temprano en vez de enterarse tarde."]
+    ],
+    "hrsH": "Lo que hacemos la primera semana",
+    "hrsL": "Casi todo el daño que sufre un reclamo por choque se hace en los primeros días, y en silencio.",
+    "hrs": [
+      ["Abrimos su PIP y lo llevamos al médico", "Activamos su propia cobertura para que el tratamiento empiece ya, y le indicamos médicos que atienden rápido a un lesionado."],
+      ["Preservamos lo que desaparece", "Los videos de cámaras de negocios y de intersecciones normalmente se borran en pocos días. Enviamos cartas de preservación y mandamos a alguien mientras todavía haya algo que fotografiar."],
+      ["Contestamos nosotros al ajustador", "Desde el día que nos contrata, la otra aseguradora habla con nosotros. Sin declaración grabada y sin firmar una autorización médica que les entregue todo su historial."],
+      ["Buscamos todas las coberturas", "La póliza del culpable, la suya contra conductores sin seguro, cualquier póliza adicional, y si esa persona andaba trabajando, lo cual puede traer la póliza mucho más grande de su patrón."],
+      ["Documentamos bien la pérdida", "Comprobantes de salario, el tratamiento que de verdad necesitó, y lo que ya no puede hacer. Un expediente armado así es lo que hace que una aseguradora se mueva de su primera oferta."]
+    ],
+    "faq": [
+      ["Me dijeron que en Utah el seguro paga sin importar la culpa. ¿Entonces sí tengo caso?", "Es muy posible que sí. Esa regla solo decide quién paga las primeras cuentas médicas. Una vez que sus lesiones alcanzan el nivel que exige Utah, usted puede reclamarle al conductor culpable por todo lo demás: el tratamiento que sigue, el salario perdido y el dolor. Esta es la razón más común por la que la gente se convence sola de que no tiene reclamo."],
+      ["¿Y si el accidente fue en parte mi culpa?", "Llame de todos modos. Utah reduce la recuperación según su parte de culpa en lugar de eliminarla, y todavía puede recuperar algo mientras se mantenga por debajo del 50%. La gente se echa la culpa de más en los días después del choque, cuando anda sacudida y repasándolo."],
+      ["La aseguradora ya me ofreció un arreglo. ¿Lo acepto?", "No sin que alguien revise el caso primero. La primera oferta se hace antes de saber si su cuello o su espalda van a sanar, y firmarla normalmente termina el reclamo de forma permanente. Si todavía está en tratamiento, usted aún no puede saber cuánto vale el reclamo, y ellos tampoco."],
+      ["¿Mi estatus migratorio afecta mi caso?", "No. Cualquier persona lesionada por la negligencia de otro en Utah puede presentar un reclamo, sin importar su estatus migratorio. No se necesita número de seguro social ni licencia, y un pasajero sin seguro propio también puede recuperar. Lo que nos cuente es confidencial y no le reportamos a inmigración."],
+      ["¿Cuánto me cuesta?", "Nada por adelantado y nada si no ganamos. Los honorarios son un porcentaje de la recuperación, acordado por escrito antes de empezar, y los gastos salen de la recuperación. Si creemos que usted puede resolverlo solo y quedarse con más, se lo decimos."]
+    ]
+  },
+
+  "motorcycle-accident": {
+    "title": "Abogado de Accidentes de Motocicleta en {City} | Gratis",
+    "h1pre": "¿Se accidentó en motocicleta en", "h1post": "?",
+    "sub": "Gratis y confidencial. Si no ganamos, usted no paga nada. La aseguradora del otro conductor va a culpar al motociclista por costumbre. Nosotros partimos de lo que muestra la evidencia.",
+    "q1": "¿Qué pasó?",
+    "o1": ["Un carro dio vuelta a la izquierda frente a mí", "Alguien se cambió de carril encima de mí", "Me chocaron por detrás en un semáforo", "Peligro en el camino o escombros", "Alguien falleció en el accidente", "No estoy seguro"],
+    "diffH": "Al motociclista lo culpan primero. Esa es la pelea.",
+    "diffL": "Un reclamo en moto no es un reclamo de carro con un vehículo más chico. Las lesiones son peores, la cobertura es más delgada, y el prejuicio empieza antes de que alguien vea la evidencia.",
+    "diff": [
+      ["El prejuicio es real y llega temprano", "Los ajustadores y los jurados llegan suponiendo que el motociclista iba rápido o zigzagueando. Nada en el expediente corrige eso solo: hace falta evidencia del lugar, análisis de visibilidad y muchas veces una reconstrucción."],
+      ["Las vueltas a la izquierda se ganan con visibilidad", "El choque grave más común en moto es un carro que da vuelta a la izquierda cruzando el paso del motociclista. «Nunca lo vi» no es una defensa, pero se convierte en una si nadie documenta lo que el conductor realmente podía ver."],
+      ["Las lesiones son más graves y más lentas", "Fracturas, raspones profundos, pérdida de piel y lesiones en la cabeza necesitan meses antes de que alguien pueda valorarlas. Un arreglo temprano casi siempre cierra el reclamo por debajo de lo que termina costando el tratamiento."],
+      ["El equipo se usa en su contra", "Utah no exige casco después de los 21 años, y no traerlo no es negligencia por sí solo. Espere el argumento de todos modos, aplicado a su equipo, a su escape y a la apariencia de su moto."],
+      ["La cobertura se acaba rápido", "Las lesiones graves en moto pasan con frecuencia el límite de la póliza del conductor culpable. Encontrar cobertura contra conductores sin seguro, pólizas del hogar y del patrón suele ser la diferencia entre el límite y el número real."],
+      ["Utah reparte la culpa", "Utah reduce la recuperación según su parte de culpa y la elimina en el 50%. En moto, el argumento de la culpa es donde se gana o se pierde casi todo el dinero."]
+    ],
+    "hrsH": "Lo que hacemos en las primeras 72 horas",
+    "hrsL": "Los casos de moto se ganan con evidencia del lugar que deja de existir en cuestión de días.",
+    "hrs": [
+      ["Preservamos la moto antes de que la deshuesen", "La moto misma es evidencia: el patrón de daño, las marcas en el pavimento, dónde quedó. Una vez que la aseguradora la declara pérdida total y la manda al yonke, eso se acabó. Actuamos primero."],
+      ["Fotografiamos la visibilidad desde el asiento del conductor", "En un caso de vuelta a la izquierda, lo que el conductor podía ver desde donde estaba sentado suele ser todo el caso. Eso hay que documentarlo antes de que cambien las plantas, los señalamientos o la luz de la temporada."],
+      ["Buscamos las cámaras", "El video de intersecciones, negocios y timbres se borra en días. Recorremos la zona y enviamos cartas de preservación de inmediato."],
+      ["Contestamos nosotros al ajustador", "Desde el día que nos contrata, la otra aseguradora habla con nosotros. Sin declaración grabada mientras anda medicado y sin firmar una autorización médica abierta."],
+      ["Lo llevamos con médicos que atienden motociclistas", "Ortopedia y cuidado de heridas que documenten bien, más la revisión de lesión en la cabeza que las salas de emergencia suelen saltarse."]
+    ],
+    "faq": [
+      ["No traía casco. ¿Eso acaba con mi reclamo?", "No. Utah solo exige casco antes de los 21 años, y no traerlo no es negligencia por sí solo. La aseguradora lo va a mencionar de todos modos, y puede afectar específicamente los daños por lesión en la cabeza, pero no elimina el reclamo por lo demás, y no tiene nada que ver con quién causó el choque."],
+      ["El conductor dice que nunca me vio. ¿Eso lo protege?", "No. Un conductor que cruza el tráfico tiene la obligación de asegurarse de que el paso esté libre. «Nunca lo vi» es admitir que no miró, no una excusa. Pero solo funciona así si alguien documenta la visibilidad mientras todavía se ve como ese día."],
+      ["¿Y si el accidente fue en parte mi culpa?", "Llame de todos modos. Utah reduce la recuperación según su parte de culpa en lugar de eliminarla, y todavía puede recuperar algo mientras se mantenga por debajo del 50%. Los motociclistas se echan la culpa por cosas que no estaban en sus manos."],
+      ["¿Mi estatus migratorio afecta mi caso?", "No. Cualquier persona lesionada por la negligencia de otro en Utah puede presentar un reclamo, sin importar su estatus migratorio. No se necesita número de seguro social ni licencia. Lo que nos cuente es confidencial y no le reportamos a inmigración."],
+      ["¿Cuánto me cuesta?", "Nada por adelantado y nada si no ganamos. Los honorarios son un porcentaje de lo que recuperemos, acordado por escrito antes de empezar, y los gastos del caso salen de la recuperación, no de su bolsillo."]
+    ]
+  },
+
+  "wrongful-death": {
+    "title": "Abogado de Muerte por Negligencia en {City} | Utah",
+    "h1pre": "¿Su familia perdió a alguien en", "h1post": "?",
+    "sub": "Lo sentimos mucho. Cuando esté listo, una llamada le dice cuáles son los plazos y qué cosas su familia no tiene que cargar. Gratis y confidencial.",
+    "q1": "¿Qué pasó?",
+    "o1": ["Accidente con tráiler o camión de carga", "Accidente de carro", "Accidente de motocicleta", "Peatón o ciclista", "Otra cosa"],
+    "diffH": "Qué implica un reclamo por muerte por negligencia en Utah",
+    "diffL": "Usted no necesita entender nada de esto hoy. Está aquí para que sepa de qué se va a tratar la conversación cuando esté listo para tenerla.",
+    "diff": [
+      ["Quién puede presentarlo", "Utah limita este reclamo a ciertos familiares y al representante personal de la sucesión. Definir quién lo presenta, y a nombre de quién, es de lo primero que resolvemos para que la familia no tenga que negociarlo entre sí."],
+      ["El plazo es más corto que en lesiones", "Utah da menos tiempo para presentar un reclamo por muerte que para uno por lesiones, y mucho menos todavía cuando hay de por medio un vehículo del gobierno. Esta es la única parte que de verdad no puede esperar."],
+      ["La evidencia también se borra sola", "Si hubo un tráiler involucrado, sus datos electrónicos, los registros del chofer y cualquier video están sujetos a los mismos plazos de retención que en cualquier otro caso. El duelo no los detiene."],
+      ["El reclamo cubre más que las cuentas", "Gastos funerarios y médicos, el ingreso y los beneficios que su familia perdió, y la pérdida de la persona misma: su cuidado, su compañía, lo que hacía por la casa."],
+      ["Puede haber un reclamo aparte de la sucesión", "Lo que su familiar sufrió entre el accidente y su fallecimiento puede ser un reclamo distinto, presentado por la sucesión, además del de la familia."],
+      ["Hoy usted no firma nada", "Una primera plática es solo una plática. Muchas familias llaman una vez para entender los plazos y vuelven a llamar semanas después. Eso es completamente normal y está bien."]
+    ],
+    "hrsH": "Lo que le quitamos de encima",
+    "hrsL": "Las partes que tienen plazos, para que su familia atienda las que de verdad importan.",
+    "hrs": [
+      ["Las aseguradoras dejan de llamarles", "Todos los ajustadores, de todas las compañías involucradas, se redirigen a nosotros desde el día que nos contrata. Usted no debería estar contestando llamadas de seguros esta semana."],
+      ["Preservamos la evidencia", "Las cartas de preservación salen de inmediato: datos del vehículo, registros del chofer, videos, y los vehículos mismos antes de que los entreguen o reparen."],
+      ["Nos encargamos del papeleo de la sucesión", "Un reclamo por muerte normalmente requiere nombrar a un representante personal. Eso lo hacemos nosotros, en lugar de mandar a su familia con un segundo abogado."],
+      ["Buscamos a todos los responsables", "No solo al chofer. También a la compañía para la que trabajaba, al bróker, al taller de mantenimiento, o a quien fuera responsable del camino."],
+      ["Atendemos las cuentas", "Los gravámenes médicos, los gastos funerarios y los reclamos de reembolso del seguro de salud llegan todos al mismo tiempo y todos son negociables. Nadie de su familia debería estar contestando esas cartas."]
+    ],
+    "faq": [
+      ["Acaba de pasar. ¿Es muy pronto para llamar?", "No, y llamar no lo compromete a nada. Algunas familias quieren entender los plazos y luego dejan pasar semanas antes de hacer cualquier otra cosa. Es una forma perfectamente razonable de manejarlo. Lo único verdaderamente urgente es preservar la evidencia, y eso podemos empezarlo sin pedirle nada más."],
+      ["¿Nuestro estatus migratorio afecta el reclamo?", "No. La familia puede presentar un reclamo por muerte por negligencia sin importar su estatus migratorio, y tampoco importa el de la persona que falleció. Lo que hablemos es confidencial y no le reportamos a inmigración."],
+      ["¿Nuestra familia va a tener que ir a la corte?", "La mayoría de estos casos se resuelven sin juicio. Presentar un caso no es lo mismo que llevarlo a juicio, y gran parte del proceso es papeleo y negociación a la que su familia nunca tiene que asistir. Si llegara a hacer falta una corte, usted lo sabría con mucha anticipación."],
+      ["¿Cuánto cuesta?", "Nada por adelantado y nada si no hay recuperación. Los honorarios son un porcentaje acordado por escrito de antemano, y los gastos del caso salen de la recuperación, no de su familia."],
+      ["¿Con quién vamos a tratar?", "Contesta una persona real, de día o de noche. William Andrews lleva estos casos personalmente en lugar de pasarlos a un gestor."]
+    ]
+  }
+}

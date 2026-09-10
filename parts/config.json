@@ -1,0 +1,94 @@
+{
+  "FIRM_NAME": "William Andrews",
+  "FIRM_LEGAL": "William Enoch Andrews Injury Lawyer, PC",
+  "FIRM_TAGLINE": "Injury Attorney",
+  "RESPONSIBLE_ATTORNEY": "William Enoch Andrews",
+  "BAR_NUMBER": "10032",
+  "BAR_STATE": "Utah",
+  "ADMITTED": "2004",
+  "INTAKE_PHONE": "+18016834993",
+  "INTAKE_DISPLAY": "(801) 683-4993",
+  "FORM_ENDPOINT": "https://formspree.io/f/mrpgjqan",
+  "EMAIL_SUBJECT_TAG": "WilliamAndrewsPPC",
+  "INTAKE_EMAIL": "info@williamandrewslaw.com",
+  "GTM_ID": "GTM-KQXMJJPM",
+  "ADS_ID": "AW-18340419166",
+  "GA4_ID": "G-101ETBCVGH",
+  "CLARITY_ID": "",
+  "CALLRAIL_SWAP": "//cdn.calltrk.com/companies/256973679/8a1f48423ee6fe69df6b/12/swap.js",
+  "PROD_DOMAIN": "results.williamandrewslaw.com",
+  "PRIVACY_URL": "https://www.williamandrewslaw.com/privacy-policy/",
+  "TERMS_URL": "https://www.williamandrewslaw.com/terms-of-use/",
+  "DNS_URL": "https://www.williamandrewslaw.com/privacy-policy/#do-not-sell",
+  "OFFICE_ADDR": "299 S Main St, Suite 1310, Salt Lake City, UT 84111",
+  "REVIEW_RATING": "4.7",
+  "REVIEW_COUNT": "48",
+  "REVIEW_URL": "",
+  "HEADSHOT": "will-andrews.jpg",
+
+  "STATS": [
+    ["Since 2004", "Practising in Utah"],
+    ["4.7 &#9733;", "48 Google reviews"],
+    ["No fee", "unless we win"],
+    ["24/7", "A real person answers"]
+  ],
+  "STATS_ES": [
+    ["Desde 2004", "Ejerciendo en Utah"],
+    ["4.7 &#9733;", "48 reseñas en Google"],
+    ["Sin cobro", "si no ganamos"],
+    ["24/7", "Contesta una persona"]
+  ],
+
+  "REVIEWS": [
+    ["Will Andrews is extremely knowledgeable and helpful. He is detail oriented and will take care of you and your loved ones if you have been in an accident. Can't recommend him enough!", "Bryton Wells"],
+    ["Will is incredible! He deeply cares to take care of you and your family when some of the worst things happen to you. I can't recommend him enough!", "Bryce Burnham"],
+    ["I've found Will Andrews to be a good and honorable attorney. He's intelligent, thoughtful, and works hard for the best interests of his clients. He will get great results! I highly recommend him in all personal injury matters!", "Lane Clark"]
+  ],
+
+  "SOL": {
+    "injury": "In Utah you generally have <b>four years</b> from the date of a crash to file an injury claim, and <b>two years</b> for a wrongful death claim. If a city, county or state vehicle was involved, a formal notice of claim can be due within <b>one year</b> — far sooner than most people expect. Deadlines turn on the facts, so confirm yours rather than assuming.",
+    "injury_es": "En Utah normalmente tiene <b>cuatro años</b> desde la fecha del accidente para presentar un reclamo por lesiones, y <b>dos años</b> para un reclamo por muerte. Si hubo un vehículo de la ciudad, del condado o del estado, el aviso formal puede vencer en <b>un año</b>, mucho antes de lo que la gente espera. Los plazos dependen de los hechos: confirme el suyo en vez de suponerlo.",
+    "death": "Utah generally allows <b>two years</b> from the date of death to file a wrongful death claim — shorter than the four years for an injury claim. If a government vehicle or public entity was involved, a formal notice of claim can be due within <b>one year</b>. Deadlines turn on the facts, so confirm yours rather than assuming.",
+    "death_es": "Utah normalmente da <b>dos años</b> desde la fecha del fallecimiento para presentar un reclamo por muerte por negligencia, menos que los cuatro años de un reclamo por lesiones. Si hubo un vehículo del gobierno o una entidad pública, el aviso formal puede vencer en <b>un año</b>. Los plazos dependen de los hechos: confirme el suyo en vez de suponerlo."
+  },
+
+  "T_EN": {
+    "stepOf": "Step {n} of {total}",
+    "stepSay": "Step {n} of {total}: {label}",
+    "next": "Continue",
+    "back": "Back",
+    "sending": "Sending…",
+    "sendingMsg": "Sending your request…",
+    "errPick": "Pick the closest option — “Not sure” is fine.",
+    "errName": "Please enter your name.",
+    "errPhone": "Enter a real 10-digit US number so we can call you back.",
+    "errConsent": "Please tick the box so we are allowed to call you back.",
+    "errFix": "Please fix the highlighted answer, or just call — it is faster.",
+    "errSend": "That did not go through. Please call {phone} — we answer 24/7 and it is the fastest way to reach us."
+  },
+  "T_ES": {
+    "stepOf": "Paso {n} de {total}",
+    "stepSay": "Paso {n} de {total}: {label}",
+    "next": "Continuar",
+    "back": "Atrás",
+    "sending": "Enviando…",
+    "sendingMsg": "Enviando su solicitud…",
+    "errPick": "Elija la opción más cercana — «No estoy seguro» está bien.",
+    "errName": "Por favor escriba su nombre.",
+    "errPhone": "Escriba un número real de 10 dígitos para poder llamarle.",
+    "errConsent": "Marque la casilla para que podamos devolverle la llamada.",
+    "errFix": "Corrija la respuesta marcada, o simplemente llame — es más rápido.",
+    "errSend": "No se pudo enviar. Por favor llame al {phone} — contestamos las 24 horas y es la forma más rápida de comunicarse."
+  },
+
+  "Q2": "When did it happen?",
+  "Q2_ES": "¿Cuándo pasó?",
+  "O2": ["Today or yesterday", "In the past week", "In the past month", "More than a month ago"],
+  "O2_ES": ["Hoy o ayer", "En la última semana", "En el último mes", "Hace más de un mes"],
+  "Q3": "Where do we call you?",
+  "Q3_ES": "¿A dónde le llamamos?",
+  "Q3_HINT": "First name is fine. We call you back — usually within 15 minutes.",
+  "Q3_HINT_ES": "Con su nombre basta. Le llamamos nosotros, normalmente en unos 15 minutos.",
+  "CONSENT": "I agree that {firm} may call or text me at this number about my case, including by automated means. Message and data rates may apply. Consent is not required to hire us. Reply STOP to opt out.",
+  "CONSENT_ES": "Acepto que {firm} me llame o me envíe mensajes de texto a este número sobre mi caso, incluso por medios automatizados. Pueden aplicar tarifas de mensajes y datos. No es necesario dar este consentimiento para contratarnos. Responda STOP para dejar de recibirlos."
+}

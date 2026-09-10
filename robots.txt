@@ -1,0 +1,4 @@
+# Paid traffic only. These landers must never be indexed — they would compete
+# with williamandrewslaw.com's organic pages for the same terms.
+User-agent: *
+Disallow: /
