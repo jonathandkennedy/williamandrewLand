@@ -128,8 +128,14 @@ const en = (geo) => ({
       ],
     },
     {
-      q: `How do you handle a case in ${geo.label} from Salt Lake?`,
-      a: [geo.honesty.long, geo.honesty.meeting],
+      q: 'The insurer already offered me a settlement. Should I take it?',
+      a: [
+        'Not before someone reads the file. A first offer is made before anyone knows whether ' +
+          'your neck or back settles down, and it is priced to close the claim while you are ' +
+          'worried about the rent. Signing it usually ends the claim permanently.',
+        'If your treatment is still going, you cannot yet know what the claim is worth — and ' +
+          'neither can they.',
+      ],
     },
     {
       q: 'What does this cost me?',
@@ -293,8 +299,15 @@ const es = (geo) => ({
       ],
     },
     {
-      q: `¿Cómo llevan un caso en ${geo.esLabel || geo.label} si están en Salt Lake?`,
-      a: [geo.es.honestyLong, geo.es.meeting],
+      q: 'La aseguradora ya me ofreció un arreglo. ¿Lo acepto?',
+      a: [
+        'No sin que alguien revise el caso primero. La primera oferta se hace antes de saber si ' +
+          'su cuello o su espalda van a sanar, y está calculada para cerrar el reclamo mientras ' +
+          'usted anda preocupado por la renta. Firmarla normalmente termina el reclamo de forma ' +
+          'permanente.',
+        'Si todavía está en tratamiento, usted aún no puede saber cuánto vale el reclamo — y ' +
+          'ellos tampoco.',
+      ],
     },
     {
       q: '¿Cuánto me cuesta?',

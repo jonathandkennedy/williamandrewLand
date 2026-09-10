@@ -126,8 +126,13 @@ const en = (geo) => ({
       ],
     },
     {
-      q: `Do we have to travel to Salt Lake?`,
-      a: [geo.honesty.long, geo.honesty.meeting],
+      q: 'Will our family have to go to court?',
+      a: [
+        'Most of these resolve without a trial. Filing a case is not the same as trying one, and ' +
+          'much of what happens is paperwork and negotiation your family never has to attend.',
+        'If it does need a courtroom, you will know long before it gets there, and nobody is put ' +
+          'on a witness stand by surprise.',
+      ],
     },
     {
       q: 'What does this cost?',
@@ -282,8 +287,14 @@ const es = (geo) => ({
       ],
     },
     {
-      q: '¿Tenemos que viajar a Salt Lake?',
-      a: [geo.es.honestyLong, geo.es.meeting],
+      q: '¿Nuestra familia va a tener que ir a la corte?',
+      a: [
+        'La mayoría de estos casos se resuelven sin juicio. Presentar un caso no es lo mismo que ' +
+          'llevarlo a juicio, y gran parte del proceso es papeleo y negociación a la que su ' +
+          'familia nunca tiene que asistir.',
+        'Si llegara a hacer falta una corte, usted lo sabría con mucha anticipación, y a nadie se ' +
+          'le sube al estrado por sorpresa.',
+      ],
     },
     {
       q: '¿Cuánto cuesta?',

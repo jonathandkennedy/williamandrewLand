@@ -37,8 +37,8 @@ function makePage(opts) {
 
   const label = lang === 'es' ? geo.esLabel : geo.label;
   const labelShort = lang === 'es' ? geo.esLabelShort : geo.labelShort;
-  const honestyShort = lang === 'es' ? geo.es.honestyShort : geo.honesty.short;
-  const meeting = lang === 'es' ? geo.es.meeting : geo.honesty.meeting;
+  const coverageShort = lang === 'es' ? geo.es.coverageShort : geo.coverage.short;
+  const meeting = lang === 'es' ? geo.es.meeting : geo.coverage.meeting;
 
   const slug = lang === 'es' ? `es/${opts.esSlug}` : opts.slug;
   const altSlug = lang === 'es' ? opts.slug : `es/${opts.esSlug}`;
@@ -52,7 +52,7 @@ function makePage(opts) {
       h1Line2: ' Talk to a Utah attorney tonight.',
       subhead: 'Free. Confidential. No fee unless we win. Tell us what happened and we will ' +
         'tell you straight whether you have a case.',
-      locality: `<strong>${honestyShort}</strong> We take ${labelShort} cases and come to you — ` +
+      locality: `<strong>${coverageShort}</strong> ` +
         `${geo.cities.slice(0, 5).join(', ')} and the rest of the county.`,
       formHeading: 'Tell us what happened',
       formSub: 'Four questions. Takes about thirty seconds.',
@@ -75,8 +75,8 @@ function makePage(opts) {
       h1Line2: ' Hable con un abogado de Utah esta noche.',
       subhead: 'Gratis y confidencial. Si no ganamos, usted no paga nada. Cuéntenos qué pasó y ' +
         'le decimos con franqueza si tiene un caso.',
-      locality: `<strong>${honestyShort}</strong> Tomamos casos de ${labelShort} y vamos a donde ` +
-        `usted esté — ${geo.cities.slice(0, 5).join(', ')} y el resto del condado.`,
+      locality: `<strong>${coverageShort}</strong> ` +
+        `${geo.cities.slice(0, 5).join(', ')} y el resto del condado.`,
       formHeading: 'Cuéntenos qué pasó',
       formSub: 'Cuatro preguntas. Toma unos treinta segundos.',
       detail: `ej. ${geo.hub}, el martes pasado`,
@@ -129,7 +129,7 @@ function makePage(opts) {
     closingLede: o.closingLede || D.closingLede,
 
     serviceArea: o.serviceArea || geo.cities,
-    serviceAreaNote: o.serviceAreaNote || `${honestyShort} ${meeting}`,
+    serviceAreaNote: o.serviceAreaNote || `${coverageShort} ${meeting}`,
   };
 }
 

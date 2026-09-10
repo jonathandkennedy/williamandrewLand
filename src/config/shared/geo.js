@@ -7,12 +7,11 @@
  * local would name, it does not belong here - a wrong detail is worse than
  * a generic one, because locals notice.
  *
- * `honesty` is deliberately blunt about where the office actually is.
- * Pretending by omission is what the current geo pages do, and a Logan firm
- * can beat that with one sentence.
+ * `coverage` says which towns we take cases in and that we travel to the
+ * client. It deliberately does NOT raise where the office is: intake covers
+ * logistics on the call, and the landing page is not the place to answer an
+ * objection the visitor has not made yet.
  */
-
-const SLC_OFFICE = 'Salt Lake City';
 
 module.exports = {
   'cache-valley': {
@@ -44,31 +43,17 @@ module.exports = {
     esLabel: 'el condado de Cache',
     esLabelShort: 'Cache Valley',
     es: {
-      honestyShort: 'Nuestra oficina está en Salt Lake City, no en Logan. Se lo decimos de frente.',
-      honestyLong:
-        'Nuestra oficina está en Salt Lake City. No vamos a poner una dirección falsa de Logan en ' +
-        'esta página. Lo que sí hacemos es subir: al hospital Logan Regional, a Cache Valley ' +
-        'Hospital, o a la mesa de su cocina en Hyrum o Smithfield. De todos modos, casi todos los ' +
-        'casos de tráiler del condado de Cache terminan con un despacho de Salt Lake o de Ogden, ' +
-        'porque ahí es donde están los abogados que defienden a las compañías de transporte. La ' +
-        'pregunta que vale no es quién está más cerca, sino quién consigue los datos electrónicos ' +
-        'del tráiler antes de que se borren y quién habla primero con la aseguradora.',
+      coverageShort: 'Tomamos casos de Cache Valley y vamos a donde usted esté.',
       meeting:
-        'Consulta por video el mismo día, una llamada esta noche, o subimos al valle a verlo esta ' +
-        'semana. Usted nunca tiene que manejar hasta Salt Lake para contratarnos.',
+        'Nos vemos en Logan Regional, en Cache Valley Hospital, o en la mesa de su cocina. ' +
+        'Consulta por video el mismo día si le resulta más fácil. Usted no maneja a ningún lado ' +
+        'para contratarnos.',
     },
-    honesty: {
-      short: `Our office is in ${SLC_OFFICE}, not Logan. We say so up front.`,
-      long:
-        `Our office is in ${SLC_OFFICE}. We are not going to put a fake Logan address on this ` +
-        `page. What we will do is drive up: to Logan Regional, to Cache Valley Hospital, or to ` +
-        `your kitchen table in Hyrum or Smithfield. Most Cache County truck cases end up with a ` +
-        `Salt Lake or Ogden firm anyway, because that is where the trucking defence lawyers are. ` +
-        `The question worth asking is not who is closest. It is who gets the truck's electronic ` +
-        `data before it is overwritten, and who talks to the carrier's insurer first.`,
+    coverage: {
+      short: 'We take Cache Valley cases and come to you.',
       meeting:
-        'Same-day video consult, a phone call tonight, or we come to you in the valley this week. ' +
-        'You never have to drive to Salt Lake to hire us.',
+        'We meet you at Logan Regional, at Cache Valley Hospital, or at your kitchen table. ' +
+        'Same-day video consult if that is easier. You are not driving anywhere to hire us.',
     },
   },
 
@@ -102,24 +87,16 @@ module.exports = {
     esLabel: 'el condado de Salt Lake',
     esLabelShort: 'Salt Lake',
     es: {
-      honestyShort: 'Nuestra oficina está en Main Street, en el centro. Puede llegar sin cita.',
-      honestyLong:
-        'Nuestra oficina está en el 299 South Main Street, en el centro. Si prefiere venir y ' +
-        'sentarse frente al abogado que de verdad va a llevar su caso, puede hacerlo. Si prefiere ' +
-        'no moverse, nosotros vamos al hospital o a su casa.',
+      coverageShort: 'Nuestra oficina está en Main Street, en el centro. Puede llegar sin cita.',
       meeting:
         'Puede llegar sin cita al centro, o vamos a donde usted esté en todo el valle. Consulta ' +
         'por video el mismo día si le resulta más fácil.',
     },
-    honesty: {
+    coverage: {
       short: 'Our office is on Main Street downtown. You can walk in.',
-      long:
-        'Our office is at 299 South Main Street, downtown. If you would rather come in and ' +
-        'sit across a desk from the attorney who will actually handle your case, you can. ' +
-        'If you would rather not move, we will come to the hospital or to your house.',
       meeting:
-        'Walk in downtown, or we come to you anywhere in the valley. Video consult the same day ' +
-        'if that is easier.',
+        'Walk in downtown, or we come to you anywhere in the valley. Same-day video consult if ' +
+        'that is easier.',
     },
   },
 
@@ -155,22 +132,16 @@ module.exports = {
     esLabel: 'los condados de Weber y Davis',
     esLabelShort: 'Ogden y Layton',
     es: {
-      honestyShort: 'Nuestra oficina está en Salt Lake, como media hora por la I-15.',
-      honestyLong:
-        'Nuestra oficina está en Salt Lake City, más o menos media hora por la I-15. Vamos a ' +
-        'McKay-Dee, a Davis Hospital, a Layton Hospital, o a su casa. Usted no va a andar ' +
-        'manejando a Salt Lake para firmar papeles.',
+      coverageShort: 'Tomamos casos de los condados de Weber y Davis y vamos a donde usted esté.',
       meeting:
-        'Vamos a donde usted esté en los condados de Weber o Davis, o nos vemos por video el ' +
-        'mismo día.',
+        'Nos vemos en McKay-Dee, Davis Hospital, Layton Hospital o su casa. Consulta por video el ' +
+        'mismo día si le resulta más fácil.',
     },
-    honesty: {
-      short: 'Our office is in Salt Lake, about 35 minutes down I-15.',
-      long:
-        'Our office is in Salt Lake City, roughly half an hour down I-15. We come to McKay-Dee, ' +
-        'to Davis Hospital, to Layton Hospital, or to your house. You will not be driving to ' +
-        'Salt Lake to sign paperwork.',
-      meeting: 'We come to you in Weber or Davis County, or meet by video the same day.',
+    coverage: {
+      short: 'We take Weber and Davis County cases and come to you.',
+      meeting:
+        'We meet you at McKay-Dee, Davis Hospital, Layton Hospital or your house. Same-day video ' +
+        'consult if that is easier.',
     },
   },
 };

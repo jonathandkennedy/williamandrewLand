@@ -122,10 +122,13 @@ const en = (geo) => ({
       ],
     },
     {
-      q: `How do you handle a case in ${geo.label} from Salt Lake?`,
+      q: 'The trucking company already offered me money. Should I take it?',
       a: [
-        geo.honesty.long,
-        geo.honesty.meeting,
+        'Not before someone reads the file. An early offer arrives before anyone knows whether ' +
+          'your injuries settle down, and it is priced to close the claim cheaply while you are ' +
+          'still worried about the rent. Accepting it usually ends the case for good.',
+        'It also tends to mean they already know something about their own driver or their own ' +
+          'records that they would rather not hand over in litigation.',
       ],
     },
     {
@@ -316,8 +319,15 @@ const es = (geo) => ({
       ],
     },
     {
-      q: `¿Cómo llevan un caso en ${geo.esLabel || geo.label} si están en Salt Lake?`,
-      a: [geo.es.honestyLong, geo.es.meeting],
+      q: 'La compañía de transporte ya me ofreció dinero. ¿Lo acepto?',
+      a: [
+        'No sin que alguien revise el caso primero. Una oferta temprana llega antes de que se ' +
+          'sepa si sus lesiones van a sanar, y está calculada para cerrar el reclamo barato ' +
+          'mientras usted anda preocupado por la renta. Aceptarla normalmente termina el caso ' +
+          'para siempre.',
+        'Además, casi siempre significa que ellos ya saben algo de su propio chofer o de sus ' +
+          'propios registros que preferirían no entregar en un juicio.',
+      ],
     },
     {
       q: '¿Cuánto me cuesta?',

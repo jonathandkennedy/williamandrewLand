@@ -44,9 +44,8 @@ module.exports = (site) => {
           'Free. No fee unless we win. The trucking company started building its file the day ' +
           'of the crash. You should have someone building yours.',
         localityHtml:
-          `<strong>Our office is in Salt Lake City, not Logan.</strong> We would rather say so ` +
-          `than have you find out. We drive up to Cache Valley — Logan Regional, or your ` +
-          `kitchen table in Hyrum or Smithfield.`,
+          `<strong>We take Cache Valley truck cases and come to you.</strong> Logan, North Logan, ` +
+          `Smithfield, Hyrum, Providence &mdash; at the hospital or at your kitchen table.`,
         formSub: 'Four questions, about thirty seconds. Or just call — it is faster.',
         detailPlaceholder: 'e.g. US-91 near Wellsville, last Tuesday',
         proofLede:
@@ -56,8 +55,7 @@ module.exports = (site) => {
         closingLede:
           'You are not committing to anything by calling. If the honest answer is that you do ' +
           'not need a lawyer, that is what you will hear.',
-        serviceAreaNote:
-          `Salt Lake City office, ${cache.driveFromOffice}. ${cache.honesty.meeting}`,
+        serviceAreaNote: cache.coverage.meeting,
       },
     }),
 
@@ -81,9 +79,8 @@ module.exports = (site) => {
         h1Line2: ' Find out tonight if you have a claim.',
         detailPlaceholder: 'e.g. Main Street in Logan, last Friday',
         localityHtml:
-          `<strong>Our office is in Salt Lake City, not Logan.</strong> We take Cache Valley ` +
-          `cases and come to you — Logan, North Logan, Smithfield, Hyrum, Providence and the ` +
-          `rest of the county. You will not drive to Salt Lake to hire us.`,
+          `<strong>We take Cache Valley cases and come to you.</strong> Logan, North Logan, ` +
+          `Smithfield, Hyrum, Providence and the rest of the county.`,
       },
     }),
 
