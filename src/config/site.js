@@ -25,9 +25,8 @@ module.exports = {
       state: 'UT',
       zip: '84111',
     },
-    // SUPPLY - Utah State Bar number. Printed in the footer as a
-    // verifiability signal. Leave empty to omit.
-    barNumber: '',
+    // Utah State Bar ID. Printed in the footer as a verifiability signal.
+    barNumber: '10032',
     barProfileUrl: 'https://services.utahbar.org/Member-Directory',
   },
 
@@ -115,23 +114,61 @@ module.exports = {
   },
 
   /**
-   * SUPPLY - the live Google Business Profile review link and the real
-   * review count. A star rating without a denominator reads as a dodge.
-   * Public sources showed 4.7 from ~46 reviews; confirm before launch
-   * because the count moves and a stale number is a credibility leak.
+   * Rating and count read off the live Google Business Profile on
+   * 2026-09-10. Re-check quarterly: the count moves, and a stale number on a
+   * page whose whole argument is verifiability is a credibility leak.
    */
   reviews: {
     rating: 4.7,
-    count: 46,
-    countVerifiedOn: '', // e.g. '2026-09-10'
-    profileUrl: '', // deep link to the Google reviews tab
+    count: 48,
+    countVerifiedOn: '2026-09-10',
     /**
-     * Real client reviews only. Each needs: injury context, something about
-     * communication, and an outcome. Reviews that only praise the ads are
-     * removed on sight - they signal staged proof.
-     * Shape: { quote, name, source: 'Google', matter }
+     * SUPPLY - deep link to the reviews tab of the Google Business Profile.
+     * Without it the count renders as plain text rather than something the
+     * visitor can click and check, which is the entire point of showing it.
      */
-    quotes: [],
+    profileUrl: '',
+    /**
+     * Real reviews, transcribed verbatim from the Google profile. Nothing here
+     * is paraphrased or trimmed for punchiness - editing a review is the same
+     * class of mistake as inventing one.
+     *
+     * Chosen for what each one carries: the first speaks to results, the
+     * second to how he treats a family in crisis, the third names being in an
+     * accident. Between them they cover the three things a skeptical reader
+     * checks for.
+     */
+    quotes: [
+      {
+        quote:
+          'Will Andrews is extremely knowledgeable and helpful. He is detail oriented and will ' +
+          'take care of you and your loved ones if you have been in an accident. Can\'t ' +
+          'recommend him enough!',
+        name: 'Bryton Wells',
+        source: 'Google',
+        matter: '',
+      },
+      {
+        quote:
+          'Will is incredible! He deeply cares to take care of you and your family when some of ' +
+          'the worst things happen to you. I can\'t recommend him enough!',
+        name: 'Bryce Burnham',
+        source: 'Google',
+        matter: '',
+      },
+      {
+        quote:
+          'I\'ve found Will Andrews to be a good and honorable attorney. He\'s intelligent, ' +
+          'thoughtful, and works hard for the best interests of his clients. He will get great ' +
+          'results! I highly recommend him in all personal injury matters!',
+        // SUPPLY - the reviewer's display name was cropped out of the profile
+        // screenshot. It shows as a Google Local Guide with 26 reviews. Put
+        // the real name here; the page renders this fallback until then.
+        name: 'Google Local Guide',
+        source: 'Google',
+        matter: '',
+      },
+    ],
   },
 
   /**
@@ -150,8 +187,12 @@ module.exports = {
     memberships: ['The National Trial Lawyers, Top 100'],
     colour:
       'Two black belts - Korean Tae Kwon-Do, earned in Seoul, and Japanese Shotokan.',
-    // SUPPLY - path to a clean headshot, placed in src/assets/img/.
-    // Used in the "who you are calling" block, never behind the headline.
+    /**
+     * Leave empty. The build looks for src/assets/img/will-andrews.{jpg,jpeg,png,webp}
+     * and wires it automatically, so adding the headshot is a matter of
+     * dropping the file in - no config edit. Set a path here only to override
+     * that. Used in the "who you are calling" block, never behind the headline.
+     */
     photo: '',
   },
 

@@ -94,8 +94,10 @@ texting platform honours STOP automatically.
 
 ### 6. Brand colours — `site.site.colors`
 The four hex values currently in config are an **approximation** of the site's
-navy-and-orange treatment. They were not sampled from williamandrewslaw.com,
-because the build environment cannot reach it.
+navy-and-orange treatment. They were not sampled from williamandrewslaw.com:
+that host is blocked by this environment's egress policy, confirmed on repeated
+attempts through two different clients. A screenshot of the homepage is enough
+to read them off.
 
 Take the real values off the live site (ink / mid navy / accent orange /
 pressed orange) and put them in `site.site.colors`, then date
@@ -131,10 +133,10 @@ least likely to call a second firm.
 Also confirm: Spanish-tagged Formspree alerts reach a Spanish speaker, and
 inbound Spanish SMS does too.
 
-### 8. Verify the review count — `site.reviews.count`
-Shows `4.7 / 46 reviews` from public sources. Confirm against the live Google
-Business Profile, then set `reviews.countVerifiedOn`. Re-check quarterly; a stale
-count is a credibility leak on a page whose whole argument is verifiability.
+### 8. Review count *(done — 4.7 from 48, verified 2026-09-10)*
+Read off the live Google Business Profile. Re-check quarterly and update
+`reviews.countVerifiedOn`; a stale count is a credibility leak on a page whose
+whole argument is verifiability.
 
 ### 9. Delete the YouTube "review" from the existing site
 > *"not my lawyer but i just saw the most incredible advertisement on youtube…"*
@@ -147,17 +149,17 @@ Remove it today — it costs money on every page it appears on.
 
 ## Strongly recommended before scaling spend
 
-### Google review deep link — `site.reviews.profileUrl`
-Without it the rating shows as text with no clickable source. With it, the count
-becomes checkable, which is the entire point.
+### Three real reviews *(done — one name still needed)*
+Transcribed verbatim from the Google profile: Bryton Wells (names being in an
+accident), Bryce Burnham (how he treats a family in crisis), and a third that
+speaks to results.
 
-### Three real reviews — `site.reviews.quotes`
-Empty, so the section is omitted rather than filled with invented quotes. Pick
-three that mention **the injury, the communication, and the outcome**. Shape:
-
-```js
-{ quote: '…', name: 'First L.', source: 'Google', matter: 'Truck crash, Logan' }
-```
+- [ ] **The third reviewer's display name was cropped out of the screenshot.**
+      It currently renders as "Google Local Guide". Open the profile and put
+      the real name in `site.reviews.quotes[2].name` — an unattributed quote
+      reads as staged, which is the exact problem this section exists to fix.
+- [ ] Optionally set `matter` on each (e.g. `'Truck crash, Logan'`) if the case
+      type is known and disclosable.
 
 ### Two to four specific results — `site.results`
 Empty, so the section is omitted. "Millions won" persuades nobody who is already
@@ -169,12 +171,20 @@ skeptical; `$1.05M — wrongful death, semi, 2021` does. Shape:
 Confirm each is disclosable and that the disclaimer in `site.legal.disclaimer` is
 adequate for Utah.
 
-### Attorney photo — `site.bio.photo`
-Drop a clean headshot in `src/assets/img/` and set the path. It renders in
-"Who you are calling" — **never** behind the headline.
+### Attorney photo — drop the file in
+Save the headshot as `src/assets/img/will-andrews.jpg` (or `.png` / `.webp`).
+**The build detects it automatically** — no config change. Square crop, at least
+256px on the short edge, under ~150KB. See `src/assets/img/README.md`.
 
-### Utah Bar number — `site.firm.barNumber`
-Prints in the footer next to a link to the Bar directory. Cheap verifiability.
+It renders in "Who you are calling" — **never** behind the headline.
+
+### Utah Bar number *(done — 10032)*
+Prints in the footer next to a link to the Bar directory.
+
+### Google reviews deep link — `site.reviews.profileUrl`
+Still empty, so the count renders as plain text rather than something a
+skeptical visitor can click and check. On the Google profile, right-click the
+"48 Google reviews" link and copy the address.
 
 ---
 

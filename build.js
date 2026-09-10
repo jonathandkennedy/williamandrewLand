@@ -31,6 +31,23 @@ function write(relPath, contents) {
   return full;
 }
 
+/**
+ * Finds the attorney headshot on disk.
+ *
+ * Auto-detection rather than a config path, so adding the photo is a matter
+ * of dropping the file into src/assets/img/ - one less step to get wrong, and
+ * one less way for the config to point at a file that is not there.
+ */
+function findHeadshot(site) {
+  if (site.bio.photo) return site.bio.photo; // explicit override wins
+  const dir = path.join(ASSETS, 'img');
+  if (!fs.existsSync(dir)) return '';
+  const match = fs
+    .readdirSync(dir)
+    .find((f) => /^will-andrews\.(jpe?g|png|webp)$/i.test(f));
+  return match ? `/assets/img/${match}` : '';
+}
+
 function copyDir(from, to) {
   if (!fs.existsSync(from)) return 0;
   fs.mkdirSync(to, { recursive: true });
@@ -133,11 +150,25 @@ function audit(pages) {
     );
   }
   if (!site.bio.photo) {
-    warnings.push('site.bio.photo is empty. The "who you are calling" block renders without a face.');
+    warnings.push(
+      'No headshot found. Drop the photo at src/assets/img/will-andrews.jpg (or .png/.webp) ' +
+      'and it is picked up automatically — see that folder\'s README. Until then the ' +
+      '"who you are calling" block renders without a face.'
+    );
   }
   if (!site.firm.barNumber) {
     warnings.push('site.firm.barNumber is empty. The footer loses a cheap verifiability signal.');
   }
+  // A quote with no attributable name reads as invented, which is worse than
+  // having one fewer review on the page.
+  site.reviews.quotes.forEach((q, i) => {
+    if (!q.name || q.name === 'Google Local Guide') {
+      warnings.push(
+        `Review ${i + 1} is attributed to "${q.name || '(no name)'}". Put the reviewer's real ` +
+        'Google display name here — an unattributed quote reads as staged.'
+      );
+    }
+  });
   if (site.phones.sms.e164 === site.phones.tracking.e164) {
     warnings.push(
       'SMS and call numbers are identical. Confirm the CallRail number is SMS-enabled and that ' +
@@ -209,6 +240,9 @@ function main() {
 
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
+
+  // Resolve the headshot before rendering so every page sees the same value.
+  site.bio.photo = findHeadshot(site);
 
   const pages = buildPages(site);
   const slugs = new Set();
