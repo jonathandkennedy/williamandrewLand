@@ -25,19 +25,39 @@ const ICONS = {
     '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM7 9h10v2H7V9zm0 4h7v2H7v-2z"/></svg>',
 };
 
+/**
+ * Brand palette, emitted into the head as custom-property overrides.
+ *
+ * The stylesheet ships with working defaults; this block overrides them from
+ * site.config, so matching williamandrewslaw.com exactly is a change in one
+ * config object rather than a hunt through the CSS.
+ */
+function brandTokens(site) {
+  const c = (site.site && site.site.colors) || {};
+  const rows = [
+    c.ink && `--ink:${c.ink}`,
+    c.ink && `--ink-2:${c.ink}`,
+    c.inkMid && `--ink-3:${c.inkMid}`,
+    c.accent && `--accent:${c.accent}`,
+    c.accentDark && `--accent-press:${c.accentDark}`,
+  ].filter(Boolean);
+  return rows.length ? `<style>:root{${rows.join(';')}}</style>` : '';
+}
+
 /** Sticky bottom Call/Text bar. Present on every paid page, always visible. */
-function stickyBar(site) {
+function stickyBar(site, page) {
+  const t = page.t;
   return `
-    <div class="stickybar" role="region" aria-label="Contact ${esc(site.firm.attorneyFirstName)} now">
+    <div class="stickybar" role="region" aria-label="${esc(t.callNow)}">
       <div class="stickybar__row">
         <a class="sb-call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="sticky_bar">
-          ${ICONS.phone}<span>Call Now</span>
+          ${ICONS.phone}<span>${esc(t.callNow)}</span>
         </a>
         <a class="sb-text" href="sms:${esc(site.phones.sms.e164)}" data-loc="sticky_bar">
-          ${ICONS.chat}<span>Text ${esc(site.firm.attorneyFirstName)}</span>
+          ${ICONS.chat}<span>${esc(t.textPerson(site.firm.attorneyFirstName))}</span>
         </a>
       </div>
-      <p class="stickybar__note">Free. No fee unless we win. ${esc(site.intake.hours)}.</p>
+      <p class="stickybar__note">${esc(t.stickyNote(page.intake.hours))}</p>
     </div>`;
 }
 
@@ -48,6 +68,7 @@ function stickyBar(site) {
  */
 function form(site, page, variant) {
   const id = `lead-${variant}`;
+  const t = page.t;
   const options = page.incidentOptions
     .map((o) => `<option value="${esc(o)}">${esc(o)}</option>`)
     .join('\n            ');
@@ -59,14 +80,14 @@ function form(site, page, variant) {
       <p class="form-card__sub">${esc(page.formSub)}</p>
 
       <div class="field" data-field="name">
-        <label for="${esc(id)}-name">Your name</label>
+        <label for="${esc(id)}-name">${esc(t.fieldName)}</label>
         <input id="${esc(id)}-name" name="name" type="text" autocomplete="name"
                enterkeyhint="next" required>
         <p class="field__err" aria-live="polite"></p>
       </div>
 
       <div class="field" data-field="phone">
-        <label for="${esc(id)}-phone">Mobile number</label>
+        <label for="${esc(id)}-phone">${esc(t.fieldPhone)}</label>
         <input id="${esc(id)}-phone" name="phone" type="tel" inputmode="tel"
                autocomplete="tel-national" placeholder="(435) 555-0134"
                enterkeyhint="next" required>
@@ -74,9 +95,9 @@ function form(site, page, variant) {
       </div>
 
       <div class="field" data-field="incident">
-        <label for="${esc(id)}-incident">What happened?</label>
+        <label for="${esc(id)}-incident">${esc(t.fieldIncident)}</label>
         <select id="${esc(id)}-incident" name="incident" required>
-          <option value="">Choose one&hellip;</option>
+          <option value="">${esc(t.choose)}</option>
             ${options}
         </select>
         <p class="field__err" aria-live="polite"></p>
@@ -84,45 +105,46 @@ function form(site, page, variant) {
 
       <div class="field">
         <label for="${esc(id)}-detail">
-          City and date of the crash <span class="opt">(optional)</span>
+          ${esc(t.fieldDetail)} <span class="opt">${esc(t.fieldOptional)}</span>
         </label>
         <input id="${esc(id)}-detail" name="detail" type="text"
                placeholder="${esc(page.detailPlaceholder)}" enterkeyhint="send">
       </div>
 
       <div class="hp" aria-hidden="true">
-        <label for="${esc(id)}-company">Company</label>
+        <label for="${esc(id)}-company">${esc(t.honeypot)}</label>
         <input id="${esc(id)}-company" name="company" type="text" tabindex="-1" autocomplete="off">
       </div>
 
       <button type="submit" class="btn btn--submit">
-        Get a free case review
-        <span class="btn__sub">We&rsquo;ll call you back</span>
+        ${esc(t.submit)}
+        <span class="btn__sub">${esc(t.submitSub)}</span>
       </button>
 
       <p class="form-status" role="status" aria-live="polite"></p>
 
       <ul class="reassure">
-        <li><span class="tick">&#10003;</span><span>No fee unless we win. No upfront cost.</span></li>
-        <li><span class="tick">&#10003;</span><span>Confidential. ${esc(site.intake.callbackSla)}</span></li>
-        <li><span class="tick">&#10003;</span><span>Sending this does not hire us or create an attorney-client relationship.</span></li>
+        ${t.reassure(page.intake.callbackSla)
+          .map((line) => `<li><span class="tick">&#10003;</span><span>${esc(line)}</span></li>`)
+          .join('\n        ')}
       </ul>
     </form>`;
 }
 
 /** Primary call + text pair, used in the hero and in the closing block. */
-function ctaStack(site, loc, opts) {
+function ctaStack(site, page, loc, opts) {
   const o = opts || {};
+  const t = page.t;
   return `
     <div class="cta-stack">
       <a class="btn btn--call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="${esc(loc)}">
-        ${ICONS.phone}<span>Call ${esc(site.phones.tracking.display)}</span>
+        ${ICONS.phone}<span>${esc(t.callNumber(site.phones.tracking.display))}</span>
       </a>
       <a class="btn btn--text" href="sms:${esc(site.phones.sms.e164)}" data-loc="${esc(loc)}">
-        ${ICONS.chat}<span>Text us instead</span>
+        ${ICONS.chat}<span>${esc(t.textInstead)}</span>
       </a>
     </div>
-    ${o.note === false ? '' : `<p class="cta-note">${esc(site.intake.callbackSla)}</p>`}`;
+    ${o.note === false ? '' : `<p class="cta-note">${esc(page.intake.callbackSla)}</p>`}`;
 }
 
-module.exports = { esc, jsonScript, ICONS, stickyBar, form, ctaStack };
+module.exports = { esc, jsonScript, ICONS, brandTokens, stickyBar, form, ctaStack };

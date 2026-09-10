@@ -10,7 +10,7 @@
  * sign-off required before paid traffic. See LAUNCH-CHECKLIST.md.
  */
 
-module.exports = (geo) => ({
+const en = (geo) => ({
   incidentOptions: [
     'Truck or semi crash',
     'Car crash',
@@ -145,3 +145,155 @@ module.exports = (geo) => ({
     },
   ],
 });
+
+/**
+ * Spanish. The register shifts further here than in the other two files.
+ *
+ * "Wrongful death" has no good literal Spanish equivalent - "muerte injusta"
+ * is a calque and reads as a translation error. "Muerte por negligencia" is
+ * what Utah's Spanish-speaking bar and community actually say, so that is
+ * what the page says.
+ *
+ * The immigration answer stays, because a family that has just lost someone
+ * is even less likely to call if they think it will expose them.
+ */
+const es = (geo) => ({
+  incidentOptions: [
+    'Accidente con tráiler o camión de carga',
+    'Accidente de carro',
+    'Accidente de motocicleta',
+    'Peatón o ciclista',
+    'Otra cosa',
+  ],
+
+  difference: {
+    heading: 'Qué implica un reclamo por muerte por negligencia en Utah',
+    lede:
+      'Usted no necesita entender nada de esto hoy. Está aquí para que sepa de qué se va a tratar ' +
+      'la conversación cuando esté listo para tenerla.',
+    items: [
+      {
+        h: 'Quién puede presentarlo',
+        p:
+          'La ley de Utah limita este reclamo a ciertos familiares y al representante personal de ' +
+          'la sucesión. Definir quién lo presenta, y a nombre de quién, es de lo primero que ' +
+          'resolvemos para que la familia no tenga que negociarlo entre sí.',
+      },
+      {
+        h: 'El plazo es más corto que en lesiones',
+        p:
+          'Utah da menos tiempo para presentar un reclamo por muerte que para uno por lesiones, y ' +
+          'mucho menos todavía cuando hay de por medio un vehículo del gobierno o una entidad ' +
+          'pública. Esta es la única parte que de verdad no puede esperar.',
+      },
+      {
+        h: 'La evidencia también se borra sola',
+        p:
+          'Si hubo un tráiler involucrado, sus datos electrónicos, los registros del chofer y ' +
+          'cualquier video están sujetos a los mismos plazos de retención que en cualquier otro ' +
+          'caso. El duelo no los detiene.',
+      },
+      {
+        h: 'El reclamo cubre más que las cuentas',
+        p:
+          'Gastos funerarios y médicos, el ingreso y los beneficios que su familia perdió, y la ' +
+          'pérdida de la persona misma: su cuidado, su compañía, lo que hacía por la casa.',
+      },
+      {
+        h: 'Puede haber un reclamo aparte de la sucesión',
+        p:
+          'Lo que su familiar sufrió entre el accidente y su fallecimiento puede ser un reclamo ' +
+          'distinto, presentado por la sucesión, además del de la familia.',
+      },
+      {
+        h: 'Hoy usted no firma nada',
+        p:
+          'Una primera plática es solo una plática. Muchas familias llaman una vez para entender ' +
+          'los plazos y vuelven a llamar semanas después. Eso es completamente normal y está bien.',
+      },
+    ],
+  },
+
+  firstHours: {
+    heading: 'Lo que le quitamos de encima',
+    lede: 'Las partes que tienen plazos, para que su familia atienda las que de verdad importan.',
+    steps: [
+      {
+        h: 'Las aseguradoras dejan de llamarles',
+        p:
+          'Todos los ajustadores, de todas las compañías involucradas, se redirigen a nosotros ' +
+          'desde el día que nos contrata. Usted no debería estar contestando llamadas de seguros ' +
+          'esta semana.',
+      },
+      {
+        h: 'Preservamos la evidencia',
+        p:
+          'Las cartas de preservación salen de inmediato: datos del vehículo, registros del ' +
+          'chofer, videos de cámaras, y los vehículos mismos antes de que los entreguen o reparen.',
+      },
+      {
+        h: 'Nos encargamos del papeleo de la sucesión',
+        p:
+          'Un reclamo por muerte normalmente requiere nombrar a un representante personal. Eso lo ' +
+          'hacemos nosotros, en lugar de mandar a su familia con un segundo abogado.',
+      },
+      {
+        h: 'Buscamos a todos los responsables',
+        p:
+          `No solo al chofer. También a la compañía para la que trabajaba, al bróker, al taller ` +
+          `de mantenimiento, o a quien fuera responsable del camino en ${geo.roads[0]}.`,
+      },
+      {
+        h: 'Atendemos las cuentas',
+        p:
+          'Los gravámenes médicos, los gastos funerarios y los reclamos de reembolso del seguro ' +
+          'de salud llegan todos al mismo tiempo y todos son negociables. Nadie de su familia ' +
+          'debería estar contestando esas cartas.',
+      },
+    ],
+  },
+
+  faqs: (geo, site) => [
+    {
+      q: 'Acaba de pasar. ¿Es muy pronto para llamar?',
+      a: [
+        'No, y llamar no lo compromete a nada. Algunas familias quieren entender los plazos y ' +
+          'luego dejan pasar semanas antes de hacer cualquier otra cosa. Es una forma ' +
+          'perfectamente razonable de manejarlo.',
+        'Lo único verdaderamente urgente es preservar la evidencia, y eso podemos empezarlo sin ' +
+          'pedirle nada más a usted.',
+      ],
+    },
+    {
+      q: '¿Nuestro estatus migratorio afecta el reclamo?',
+      a: [
+        'No. La familia puede presentar un reclamo por muerte por negligencia sin importar su ' +
+          'estatus migratorio, y tampoco importa el de la persona que falleció.',
+        'Lo que hablemos es confidencial. No le reportamos a inmigración.',
+      ],
+    },
+    {
+      q: '¿Cuánto tiempo tiene mi familia para presentarlo?',
+      a: [
+        'Utah fija un plazo más corto para muerte por negligencia que para reclamos por lesiones, ' +
+          'y un aviso mucho más corto todavía cuando hay una entidad o un vehículo del gobierno ' +
+          'de por medio. Como depende de los hechos concretos, vale una llamada para confirmarlo ' +
+          'en vez de suponerlo.',
+      ],
+    },
+    {
+      q: '¿Tenemos que viajar a Salt Lake?',
+      a: [geo.es.honestyLong, geo.es.meeting],
+    },
+    {
+      q: '¿Cuánto cuesta?',
+      a: [
+        'Nada por adelantado y nada si no hay recuperación. Los honorarios son un porcentaje ' +
+          'acordado por escrito de antemano, y los gastos del caso salen de la recuperación, no ' +
+          'de su familia.',
+      ],
+    },
+  ],
+});
+
+module.exports = { en, es };

@@ -159,25 +159,26 @@
       if (honeypot && honeypot.value.trim()) return;
 
       var ok = true;
+      var T = CFG.i18n || {};
       var nameField = form.querySelector('[data-field="name"]');
       var phoneField = form.querySelector('[data-field="phone"]');
       var typeField = form.querySelector('[data-field="incident"]');
 
       if (nameField) {
         var nameVal = nameField.querySelector('input').value.trim();
-        ok = setError(nameField, nameVal.length < 2 ? 'Please enter your name.' : '') && ok;
+        ok = setError(nameField, nameVal.length < 2 ? T.errName : '') && ok;
       }
       if (phoneField) {
         var phoneVal = phoneField.querySelector('input').value;
-        ok = setError(phoneField, validPhone(phoneVal) ? '' : 'Enter a 10-digit mobile number so we can call you back.') && ok;
+        ok = setError(phoneField, validPhone(phoneVal) ? '' : T.errPhone) && ok;
       }
       if (typeField) {
         var typeVal = typeField.querySelector('select').value;
-        ok = setError(typeField, typeVal ? '' : 'Pick the closest option - "Not sure" is fine.') && ok;
+        ok = setError(typeField, typeVal ? '' : T.errIncident) && ok;
       }
 
       if (!ok) {
-        show('error', 'Please fix the highlighted fields, or just call - it is faster.');
+        show('error', T.errFix);
         var firstBad = form.querySelector('[aria-invalid="true"]');
         if (firstBad) { firstBad.focus(); firstBad.scrollIntoView({ block: 'center' }); }
         return;
@@ -190,10 +191,19 @@
         submitted_at: new Date().toISOString(),
         page_title: document.title,
         form_id: form.id,
+        language: document.documentElement.lang || 'en',
       });
 
-      if (submit) { submit.setAttribute('aria-busy', 'true'); submit.innerHTML = 'Sending&hellip;'; }
-      show('busy', 'Sending your request&hellip;');
+      // Formspree uses _subject as the notification email's subject line.
+      // Intake reads this on a phone at 9pm; it has to say who and what
+      // without opening the message.
+      data._subject =
+        'NEW LEAD: ' + (data.name || 'no name') + ' - ' + (data.incident || 'type not given') +
+        ' - ' + (data.phone || 'no phone') +
+        (data.language === 'es' ? ' [ESPANOL]' : '');
+
+      if (submit) { submit.setAttribute('aria-busy', 'true'); submit.textContent = T.sendingBtn; }
+      show('busy', T.sending);
 
       // The conversion fires before the network call resolves. A lead who
       // closes the tab on the thank-you redirect still gets counted, and
@@ -211,9 +221,7 @@
 
       function failed() {
         if (submit) { submit.removeAttribute('aria-busy'); submit.innerHTML = submitLabel; }
-        show('error',
-          'That did not go through. Please call ' + (CFG.phoneDisplay || '') +
-          ' - we answer 24/7 and it is the fastest way to reach us.');
+        show('error', T.errSend || '');
       }
 
       if (!CFG.formEndpoint) {
@@ -229,7 +237,12 @@
 
       fetch(CFG.formEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          // Without this Formspree answers with a 302 to its own thank-you
+          // page instead of JSON, and the redirect below never runs.
+          Accept: 'application/json',
+        },
         body: JSON.stringify(data),
         signal: controller ? controller.signal : undefined,
       })

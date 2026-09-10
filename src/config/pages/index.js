@@ -1,4 +1,4 @@
-const { makePage, geos } = require('../shared/make-page');
+const { makePair, geos } = require('../shared/make-page');
 
 /**
  * The page manifest.
@@ -9,6 +9,10 @@ const { makePage, geos } = require('../shared/make-page');
  *
  * Adding a page is a single entry here. Adding a county is one entry in
  * shared/geo.js plus its pages here.
+ *
+ * Each entry produces an English page and, while site.intake.spanishStaffed
+ * is true, a Spanish counterpart under /es/. The two cross-link and declare
+ * hreflang for each other.
  */
 module.exports = (site) => {
   const cache = geos['cache-valley'];
@@ -19,13 +23,16 @@ module.exports = (site) => {
        lawyer/ URL should be replaced with for paid traffic. Copy is written
        by hand rather than generated, because it carries the most spend.
        ------------------------------------------------------------------ */
-    makePage({
+    ...makePair({
       site,
       geo: 'cache-valley',
       practice: 'truck',
       slug: 'cache-county-truck-accident',
+      esSlug: 'accidente-de-trailer-cache-county',
       label: 'Cache County Truck Accident Lawyer',
       noun: 'truck crash',
+      esLabel: 'Abogado de Accidentes de Tráiler en Cache County',
+      esNoun: 'accidente de tráiler',
       overrides: {
         title: 'Cache County Truck Accident Lawyer | Free Case Review',
         metaDescription:
@@ -58,13 +65,16 @@ module.exports = (site) => {
        Cache Valley - car. Same geography, different evidence problem, so
        it gets its own URL rather than sharing the truck page.
        ------------------------------------------------------------------ */
-    makePage({
+    ...makePair({
       site,
       geo: 'cache-valley',
       practice: 'car',
       slug: 'cache-county-car-accident',
+      esSlug: 'accidente-de-carro-cache-county',
       label: 'Cache County Car Accident Lawyer',
       noun: 'car crash',
+      esLabel: 'Abogado de Accidentes de Carro en Cache County',
+      esNoun: 'accidente de carro',
       overrides: {
         title: 'Cache County Car Accident Lawyer | Free Case Review',
         h1: 'Hurt in a car crash in Cache Valley?',
@@ -79,13 +89,16 @@ module.exports = (site) => {
 
     /* Cache Valley - wrongful death. Low volume, high value, and the worst
        possible page to send to a generic injury URL. */
-    makePage({
+    ...makePair({
       site,
       geo: 'cache-valley',
       practice: 'wrongful-death',
       slug: 'cache-county-wrongful-death',
+      esSlug: 'muerte-por-negligencia-cache-county',
       label: 'Cache County Wrongful Death Lawyer',
       noun: 'fatal crash',
+      esLabel: 'Abogado de Muerte por Negligencia en Cache County',
+      esNoun: 'accidente fatal',
       overrides: {
         title: 'Cache County Wrongful Death Lawyer | Utah',
         metaDescription:
@@ -108,13 +121,16 @@ module.exports = (site) => {
        Salt Lake County. Home turf, so the locality block flips from
        apology to advantage.
        ------------------------------------------------------------------ */
-    makePage({
+    ...makePair({
       site,
       geo: 'salt-lake',
       practice: 'truck',
       slug: 'salt-lake-truck-accident',
+      esSlug: 'accidente-de-trailer-salt-lake',
       label: 'Salt Lake Truck Accident Lawyer',
       noun: 'truck crash',
+      esLabel: 'Abogado de Accidentes de Tráiler en Salt Lake',
+      esNoun: 'accidente de tráiler',
       overrides: {
         title: 'Salt Lake Truck Accident Lawyer | Free Case Review',
         h1: 'Injured in a Salt Lake truck crash?',
@@ -127,13 +143,16 @@ module.exports = (site) => {
       },
     }),
 
-    makePage({
+    ...makePair({
       site,
       geo: 'salt-lake',
       practice: 'car',
       slug: 'salt-lake-car-accident',
+      esSlug: 'accidente-de-carro-salt-lake',
       label: 'Salt Lake Car Accident Lawyer',
       noun: 'car crash',
+      esLabel: 'Abogado de Accidentes de Carro en Salt Lake',
+      esNoun: 'accidente de carro',
       overrides: {
         title: 'Salt Lake Car Accident Lawyer | Free Case Review',
         h1: 'Hurt in a car crash in Salt Lake?',
@@ -148,13 +167,16 @@ module.exports = (site) => {
     /* ------------------------------------------------------------------
        Weber / Davis corridor.
        ------------------------------------------------------------------ */
-    makePage({
+    ...makePair({
       site,
       geo: 'weber-davis',
       practice: 'truck',
       slug: 'ogden-truck-accident',
+      esSlug: 'accidente-de-trailer-ogden',
       label: 'Ogden & Layton Truck Accident Lawyer',
       noun: 'truck crash',
+      esLabel: 'Abogado de Accidentes de Tráiler en Ogden',
+      esNoun: 'accidente de tráiler',
       overrides: {
         title: 'Ogden Truck Accident Lawyer | Free Case Review',
         h1: 'Injured in a truck crash on I-15?',
@@ -163,13 +185,16 @@ module.exports = (site) => {
       },
     }),
 
-    makePage({
+    ...makePair({
       site,
       geo: 'weber-davis',
       practice: 'car',
       slug: 'ogden-car-accident',
+      esSlug: 'accidente-de-carro-ogden',
       label: 'Ogden & Layton Car Accident Lawyer',
       noun: 'car crash',
+      esLabel: 'Abogado de Accidentes de Carro en Ogden',
+      esNoun: 'accidente de carro',
       overrides: {
         title: 'Ogden & Layton Car Accident Lawyer | Free Review',
         h1: 'Hurt in a car crash in Weber or Davis County?',

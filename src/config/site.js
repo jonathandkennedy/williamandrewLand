@@ -62,8 +62,23 @@ module.exports = {
     callbackSla: 'Most calls answered live. Callbacks usually within 15 minutes.',
     hours: 'Answered 24/7',
     whoAnswers: 'A person, not a robot menu.',
-    // Set true only when a Spanish speaker actually staffs the line.
-    spanishStaffed: false,
+
+    /**
+     * Spanish intake is staffed, so the /es/ pages are live.
+     *
+     * The promises below are printed next to every CTA on the Spanish pages.
+     * They currently mirror the English ones. If Spanish coverage is narrower
+     * than English coverage - business hours only, or one bilingual person
+     * rather than the whole desk - change these strings before launch. A
+     * broken promise on the first screen costs more than a smaller one
+     * honestly stated.
+     */
+    spanishStaffed: true,
+    es: {
+      callbackSla: 'Casi todas las llamadas se contestan en persona. Le devolvemos la llamada en unos 15 minutos.',
+      hours: 'Contestamos las 24 horas',
+      whoAnswers: 'Le contesta una persona, no una grabadora.',
+    },
   },
 
   tracking: {
@@ -131,6 +146,16 @@ module.exports = {
   },
 
   legal: {
+    /**
+     * The Spanish disclaimer is a parallel legal statement, not a courtesy
+     * translation - it carries the same weight on the /es/ pages that the
+     * English one carries here, and needs the same attorney review.
+     */
+    disclaimerEs:
+      'Los resultados anteriores no garantizan un resultado similar. Cada caso depende de sus ' +
+      'propios hechos. Enviar este formulario no crea una relación abogado-cliente y no nos ' +
+      'convierte en sus abogados. No envíe información confidencial hasta que hayamos aceptado ' +
+      'por escrito representarlo.',
     disclaimer:
       'Past results do not guarantee a similar outcome. Every case turns on its own facts. ' +
       'Submitting this form does not create an attorney-client relationship and does not ' +
@@ -141,19 +166,46 @@ module.exports = {
   },
 
   /**
-   * SUPPLY - where the form POSTs. Must reach a system that can text and
-   * call the lead inside five minutes. Options that work: a CallRail Form
-   * endpoint, a Zapier/Make catch hook wired to Twilio, or the firm's CRM
-   * intake webhook.
-   * Leave empty and the form falls back to a mailto-style warning in the
-   * console plus a hard nudge to call - it will not silently swallow leads.
+   * SUPPLY - Formspree endpoint, e.g. 'https://formspree.io/f/xxxxxxxx'.
+   *
+   * The client sends JSON with an `Accept: application/json` header, which is
+   * what makes Formspree answer with JSON instead of a 302 to its own
+   * thank-you page. It also sends `_subject`, so the notification email is
+   * scannable at a glance rather than every lead reading "New submission".
+   *
+   * Formspree alone is a notification, not an intake system. Whatever
+   * receives these has to text and call the lead inside five minutes - a
+   * Formspree webhook or its Zapier/Make integration into Twilio. Speed to
+   * lead beats every copy change on this page.
+   *
+   * Left empty, the form fails closed: the visitor is told to call rather
+   * than shown a false success, and the lead is logged to the console.
    */
   formEndpoint: '',
 
   site: {
     // Canonical origin for the landing-page subdomain.
     origin: 'https://results.williamandrewslaw.com',
-    brandColor: '#0B1524',
-    accentColor: '#F26B21',
+
+    /**
+     * SUPPLY - brand palette, to match williamandrewslaw.com exactly.
+     *
+     * These are emitted as CSS custom properties into every page head and
+     * override the stylesheet defaults, so matching the main site is a change
+     * here and nowhere else. The values below are an approximation taken from
+     * the site's dark-navy-and-orange treatment; they have NOT been sampled
+     * from the live site. Replace with the real hex values.
+     *
+     *   ink       darkest brand navy - hero, footer, headings
+     *   inkMid    one step lighter, used in the hero gradient
+     *   accent    the orange on the call buttons
+     *   accentDark  pressed/shadow state of the accent
+     */
+    colors: {
+      ink: '#0B1524',
+      inkMid: '#23344F',
+      accent: '#F26B21',
+      accentDark: '#CF560F',
+    },
   },
 };

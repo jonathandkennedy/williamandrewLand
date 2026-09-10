@@ -1,4 +1,5 @@
-const { esc, jsonScript, ICONS } = require('./partials');
+const { esc, jsonScript, ICONS, brandTokens } = require('./partials');
+const STRINGS = require('../config/shared/strings');
 
 /**
  * Thank-you page.
@@ -13,13 +14,17 @@ const { esc, jsonScript, ICONS } = require('./partials');
  * It is also the natural place to hang a Google Ads conversion in GTM if the
  * firm prefers a page-load trigger over the JS event.
  */
-function render(site) {
+function render(site, lang) {
   const t = site.tracking;
+  const S = STRINGS[lang];
+  const intake = lang === 'es' && site.intake.es
+    ? Object.assign({}, site.intake, site.intake.es)
+    : site.intake;
   const lpConfig = {
     googleAdsId: t.googleAdsId,
     conversionLabels: t.conversionLabels,
     formEndpoint: '',
-    thankYouUrl: '/thank-you/',
+    thankYouUrl: lang === 'es' ? '/es/gracias/' : '/thank-you/',
     phoneDisplay: site.phones.tracking.display,
   };
 
@@ -28,14 +33,15 @@ function render(site) {
     : '';
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${esc(S.htmlLang)}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>We got it &mdash; we&rsquo;re calling you | ${esc(site.firm.shortName)}</title>
+  <title>${esc(S.tyTitle)} | ${esc(site.firm.shortName)}</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="${esc(site.site.brandColor)}">
   <link rel="stylesheet" href="/assets/styles.css">
+  ${brandTokens(site)}
   <script>window.LP_CONFIG = ${jsonScript(lpConfig)};</script>
 
   <!-- Google Tag Manager -->
@@ -67,7 +73,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="masthead__name">
       ${esc(site.firm.shortName)}
-      <span>Utah injury &amp; wrongful death</span>
+      <span>${esc(S.tagline)}</span>
     </div>
     <a class="masthead__call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="header_ty">
       ${ICONS.phone}<span>${esc(site.phones.tracking.display)}</span>
@@ -78,54 +84,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main id="main">
 <section class="hero">
   <div class="wrap">
-    <h1>Got it. We&rsquo;re calling you.<span class="hero__line2">Watch for a ${esc(site.phones.tracking.display.slice(1, 4))} number.</span></h1>
-    <p class="hero__sub">
-      ${esc(site.intake.callbackSla)} If you would rather not wait, call or text now &mdash;
-      you will get straight through.
-    </p>
+    <h1>${esc(S.tyH1)}<span class="hero__line2">${esc(S.tyH1Line2(site.phones.tracking.display.slice(1, 4)))}</span></h1>
+    <p class="hero__sub">${esc(S.tySub(intake.callbackSla))}</p>
 
     <div class="cta-stack">
       <a class="btn btn--call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="thankyou">
-        ${ICONS.phone}<span>Call ${esc(site.phones.tracking.display)}</span>
+        ${ICONS.phone}<span>${esc(S.callNumber(site.phones.tracking.display))}</span>
       </a>
       <a class="btn btn--text" href="sms:${esc(site.phones.sms.e164)}" data-loc="thankyou">
-        ${ICONS.chat}<span>Text us instead</span>
+        ${ICONS.chat}<span>${esc(S.textInstead)}</span>
       </a>
     </div>
     <p class="cta-note" data-incident-hint hidden>
-      You told us: <strong data-incident-slot></strong>
+      ${esc(S.tyToldUs)} <strong data-incident-slot></strong>
     </p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>While you wait</h2>
-    <p class="sec__lede">Three things that protect your case in the next few hours.</p>
+    <h2>${esc(S.tyWaitHeading)}</h2>
+    <p class="sec__lede">${esc(S.tyWaitLede)}</p>
     <ol class="steps">
+      ${S.tySteps.map((x) => `
       <li>
-        <h3>Do not give a recorded statement</h3>
-        <p>
-          If an insurance adjuster calls &mdash; especially the trucking company&rsquo;s &mdash;
-          you can say &ldquo;I have counsel, please call my attorney.&rdquo; You are not
-          required to explain the crash to them today.
-        </p>
-      </li>
-      <li>
-        <h3>Get checked, and say everything that hurts</h3>
-        <p>
-          Adrenaline hides injuries for a day or two. What is written in the first
-          medical record matters later, so mention every symptom, not just the worst one.
-        </p>
-      </li>
-      <li>
-        <h3>Photograph what you still have</h3>
-        <p>
-          Your vehicle, your injuries, the bills, the tow paperwork, the police
-          report number. Send them to us once we speak &mdash; no need to organise
-          anything first.
-        </p>
-      </li>
+        <h3>${esc(x.h)}</h3>
+        <p>${esc(x.p)}</p>
+      </li>`).join('')}
     </ol>
   </div>
 </section>
@@ -139,20 +124,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ${esc(site.firm.address.state)} ${esc(site.firm.address.zip)}<br>
       <a href="tel:${esc(site.phones.tracking.e164)}" data-loc="footer_ty">${esc(site.phones.tracking.display)}</a>
     </p>
-    <p class="foot__legal">Attorney advertising. ${esc(site.legal.disclaimer)}</p>
+    <p class="foot__legal">${esc(S.advertising)} ${esc(lang === 'es' ? site.legal.disclaimerEs : site.legal.disclaimer)}</p>
   </div>
 </footer>
 
 <div class="stickybar" role="region" aria-label="Contact us now">
   <div class="stickybar__row">
     <a class="sb-call" href="tel:${esc(site.phones.tracking.e164)}" data-loc="sticky_ty">
-      ${ICONS.phone}<span>Call Now</span>
+      ${ICONS.phone}<span>${esc(S.callNow)}</span>
     </a>
     <a class="sb-text" href="sms:${esc(site.phones.sms.e164)}" data-loc="sticky_ty">
-      ${ICONS.chat}<span>Text ${esc(site.firm.attorneyFirstName)}</span>
+      ${ICONS.chat}<span>${esc(S.textPerson(site.firm.attorneyFirstName))}</span>
     </a>
   </div>
-  <p class="stickybar__note">Free. No fee unless we win. ${esc(site.intake.hours)}.</p>
+  <p class="stickybar__note">${esc(S.stickyNote(intake.hours))}</p>
 </div>
 
 <script src="/assets/lp.js" defer></script>

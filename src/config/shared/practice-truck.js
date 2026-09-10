@@ -10,7 +10,7 @@
  * before this page takes paid traffic. See LAUNCH-CHECKLIST.md.
  */
 
-module.exports = (geo) => ({
+const en = (geo) => ({
   incidentOptions: [
     'Semi / tractor-trailer',
     'Amazon, UPS or FedEx delivery truck',
@@ -157,3 +157,189 @@ module.exports = (geo) => ({
     },
   ],
 });
+
+/**
+ * Spanish. Written, not translated.
+ *
+ * Two additions that have no English counterpart, because they are the two
+ * questions that actually stop a Spanish-speaking crash victim from calling
+ * a lawyer in Utah:
+ *
+ *   - Immigration status. Many people believe that being undocumented means
+ *     they have no claim, or that calling a lawyer puts them at risk. It is
+ *     the single most common reason a real case never gets made. Answering it
+ *     plainly, high on the page, is worth more than any headline test.
+ *   - Being a passenger with no licence and no insurance of their own, which
+ *     is extremely common among agricultural and dairy crews in Cache Valley.
+ *
+ * Both are stated as general information and both need the same attorney
+ * review as the English copy. See LAUNCH-CHECKLIST.md.
+ */
+const es = (geo) => ({
+  incidentOptions: [
+    'Tráiler o camión de carga',
+    'Camioneta de reparto (Amazon, UPS, FedEx)',
+    'Camión de volteo, camión de caja o de trabajo',
+    'Alguien falleció en el accidente',
+    'No estoy seguro',
+  ],
+
+  difference: {
+    heading: 'Un caso de tráiler no es un choque de carro grande',
+    lede:
+      'Otras reglas, otra evidencia, y un equipo de defensa que ya está trabajando mientras ' +
+      'usted sigue en la sala de emergencias.',
+    items: [
+      {
+        h: 'La evidencia se borra sola',
+        p:
+          'El tráiler graba lo que estaba haciendo: el módulo del motor, el registro electrónico ' +
+          'de horas, las cámaras de la cabina, los mensajes con el despachador. Parte de eso se ' +
+          'borra sola con el tiempo. Si nadie la exige por escrito, desaparece y nadie tiene que ' +
+          'dar explicaciones.',
+      },
+      {
+        h: 'Ellos mandan gente al lugar',
+        p:
+          'Las compañías grandes de transporte tienen equipos de respuesta rápida por contrato. ' +
+          'Un investigador, y muchas veces un abogado, puede llegar al lugar el mismo día a ' +
+          'tomar fotos y medidas, armando su expediente mucho antes de que a usted le den de alta.',
+      },
+      {
+        h: 'Más de una empresa puede deberle',
+        p:
+          'El chofer es solo uno. La compañía de transporte, el bróker que consiguió la carga, ' +
+          'quien cargó el tráiler y el taller que le dio servicio a los frenos pueden ser otros. ' +
+          'Encontrarlos a todos es a menudo la diferencia entre el límite de una póliza y el ' +
+          'valor real del caso.',
+      },
+      {
+        h: 'Están sujetos a reglas federales',
+        p:
+          'Las compañías interestatales responden ante la FMCSA: límites de horas de manejo, ' +
+          'expediente de calificación del chofer, pruebas de alcohol y drogas, y registros de ' +
+          'inspección y mantenimiento. Una violación en esos archivos no es papeleo. Es el caso.',
+      },
+      {
+        h: 'Las pólizas son mucho más grandes',
+        p:
+          'Los mínimos federales para carga interestatal empiezan en $750,000 y llegan a millones ' +
+          'para tanques y materiales peligrosos. Más cobertura significa que la aseguradora pelea ' +
+          'más duro y desde más temprano.',
+      },
+      {
+        h: 'Utah reparte la culpa',
+        p:
+          'Utah reduce lo que usted recibe según su porcentaje de culpa, y lo elimina cuando esa ' +
+          'parte llega al 50%. Echarle un poco de culpa a usted es la movida más barata que tiene ' +
+          'la compañía, y por eso importa tanto lo que usted diga al principio.',
+      },
+    ],
+  },
+
+  firstHours: {
+    heading: 'Lo que hacemos en las primeras 72 horas',
+    lede:
+      'Un caso de tráiler es una carrera por la evidencia. Esta parte no puede esperar a que ' +
+      'usted se sienta mejor.',
+    steps: [
+      {
+        h: 'Enviamos una carta de preservación',
+        p:
+          'Una exigencia por escrito de que la compañía conserve los datos del módulo del motor, ' +
+          'los registros electrónicos de horas, el video de las cámaras, el expediente del chofer, ' +
+          'los registros del despachador y el tráiler mismo. Una vez entregada, «se nos perdió» ' +
+          'deja de salir gratis.',
+      },
+      {
+        h: 'Vamos al tráiler y al lugar del accidente',
+        p:
+          `Actuamos para inspeccionar el tractor y la caja antes de que los reparen o los ` +
+          `entreguen, y para fotografiar el camino mientras todavía se ven las marcas — ` +
+          `${geo.roads[0]} no queda cerrada mucho tiempo.`,
+      },
+      {
+        h: 'Identificamos a todos los responsables',
+        p:
+          'Pedimos el reporte policial y los registros USDOT de la compañía para determinar para ' +
+          'quién trabajaba realmente el chofer, quién consiguió la carga, quién la cargó y quién ' +
+          'le dio mantenimiento al tráiler.',
+      },
+      {
+        h: 'Detenemos la declaración grabada',
+        p:
+          'El ajustador de la compañía le va a llamar, amable y rápido, y le va a pedir que ' +
+          'describa el accidente mientras usted anda con medicamento para el dolor. Desde el día ' +
+          'que nos contrata, esas llamadas llegan a nosotros.',
+      },
+      {
+        h: 'Organizamos su atención médica y sus cuentas',
+        p:
+          `Le indicamos médicos que sí lo van a atender, resolvemos quién paga mientras avanza el ` +
+          `reclamo y empezamos a documentar el salario perdido desde el primer día — incluyendo ` +
+          `${geo.hospitals[0]}.`,
+      },
+    ],
+  },
+
+  faqs: (geo, site) => [
+    {
+      q: '¿Mi estatus migratorio afecta mi caso?',
+      a: [
+        'No. En Utah, cualquier persona lesionada por la negligencia de otro puede presentar un ' +
+          'reclamo por lesiones, sin importar su estatus migratorio. No se necesita número de ' +
+          'seguro social ni licencia de manejo para tener derecho a reclamar.',
+        'Lo que usted nos cuente es confidencial. No le reportamos a inmigración y no es algo que ' +
+          'la aseguradora tenga derecho a usar para decidir si le paga. Esta es la razón número ' +
+          'uno por la que casos buenos nunca se presentan, y no debería serlo.',
+      ],
+    },
+    {
+      q: '¿Y si el accidente fue en parte mi culpa?',
+      a: [
+        'Llame de todos modos. Utah reduce lo que usted recibe según su porcentaje de culpa en ' +
+          'lugar de quitárselo todo, y usted todavía puede recuperar algo mientras esa parte se ' +
+          'mantenga por debajo del 50%.',
+        'Además, la gente se echa la culpa a sí misma con mucha más frecuencia de la que debería. ' +
+          'Si el chofer llevaba demasiadas horas manejando, o si los frenos estaban mal ajustados, ' +
+          'no es algo que usted pudiera haber visto desde su asiento.',
+      ],
+    },
+    {
+      q: 'Yo iba de pasajero y no tengo seguro. ¿Puedo reclamar?',
+      a: [
+        'Sí. Como pasajero, usted normalmente no tiene ninguna culpa, y la cobertura que responde ' +
+          'suele ser la del vehículo en el que iba o la de la compañía de transporte, no la suya.',
+        'No tener seguro propio, ni licencia, no le quita el derecho a que le paguen sus gastos ' +
+          'médicos y su salario perdido. Vale la pena una llamada gratis para saber qué pólizas ' +
+          'aplican en su caso.',
+      ],
+    },
+    {
+      q: `¿Cómo llevan un caso en ${geo.esLabel || geo.label} si están en Salt Lake?`,
+      a: [geo.es.honestyLong, geo.es.meeting],
+    },
+    {
+      q: '¿Cuánto me cuesta?',
+      a: [
+        'Nada por adelantado, y nada si no ganamos. Nuestros honorarios son un porcentaje de lo ' +
+          'que recuperemos, acordado por escrito antes de empezar, y los gastos del caso salen de ' +
+          'la recuperación, no de su bolsillo.',
+        'La primera plática es gratis y no lo compromete a nada. Si creemos que usted no necesita ' +
+          'abogado, se lo decimos también.',
+      ],
+    },
+    {
+      q: '¿Debo hablar con el seguro de la compañía de transporte?',
+      a: [
+        'No antes de hablar con un abogado. El ajustador es amable y da pena negarse, pero una ' +
+          'declaración grabada tomada a los pocos días del accidente, cuando usted anda medicado ' +
+          'y todavía no sabe qué tan graves son sus lesiones, se usa para amarrarlo a una versión ' +
+          'y para pasarle la culpa a usted.',
+        'Puede simplemente decir que tiene abogado y darles nuestro número. Con eso basta.',
+      ],
+    },
+  ],
+});
+
+module.exports = { en, es };

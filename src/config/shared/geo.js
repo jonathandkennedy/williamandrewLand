@@ -41,6 +41,22 @@ module.exports = {
       'Nibley', 'Millville', 'Wellsville', 'Mendon', 'Hyde Park', 'Richmond',
       'Lewiston', 'Paradise', 'Newton', 'Clarkston', 'Amalga', 'Trenton',
     ],
+    esLabel: 'el condado de Cache',
+    esLabelShort: 'Cache Valley',
+    es: {
+      honestyShort: 'Nuestra oficina está en Salt Lake City, no en Logan. Se lo decimos de frente.',
+      honestyLong:
+        'Nuestra oficina está en Salt Lake City. No vamos a poner una dirección falsa de Logan en ' +
+        'esta página. Lo que sí hacemos es subir: al hospital Logan Regional, a Cache Valley ' +
+        'Hospital, o a la mesa de su cocina en Hyrum o Smithfield. De todos modos, casi todos los ' +
+        'casos de tráiler del condado de Cache terminan con un despacho de Salt Lake o de Ogden, ' +
+        'porque ahí es donde están los abogados que defienden a las compañías de transporte. La ' +
+        'pregunta que vale no es quién está más cerca, sino quién consigue los datos electrónicos ' +
+        'del tráiler antes de que se borren y quién habla primero con la aseguradora.',
+      meeting:
+        'Consulta por video el mismo día, una llamada esta noche, o subimos al valle a verlo esta ' +
+        'semana. Usted nunca tiene que manejar hasta Salt Lake para contratarnos.',
+    },
     honesty: {
       short: `Our office is in ${SLC_OFFICE}, not Logan. We say so up front.`,
       long:
@@ -83,6 +99,18 @@ module.exports = {
       'Murray', 'Taylorsville', 'Draper', 'Midvale', 'Riverton', 'Herriman',
       'Cottonwood Heights', 'Holladay', 'Millcreek', 'Magna', 'Bluffdale',
     ],
+    esLabel: 'el condado de Salt Lake',
+    esLabelShort: 'Salt Lake',
+    es: {
+      honestyShort: 'Nuestra oficina está en Main Street, en el centro. Puede llegar sin cita.',
+      honestyLong:
+        'Nuestra oficina está en el 299 South Main Street, en el centro. Si prefiere venir y ' +
+        'sentarse frente al abogado que de verdad va a llevar su caso, puede hacerlo. Si prefiere ' +
+        'no moverse, nosotros vamos al hospital o a su casa.',
+      meeting:
+        'Puede llegar sin cita al centro, o vamos a donde usted esté en todo el valle. Consulta ' +
+        'por video el mismo día si le resulta más fácil.',
+    },
     honesty: {
       short: 'Our office is on Main Street downtown. You can walk in.',
       long:
@@ -122,6 +150,18 @@ module.exports = {
       'North Ogden', 'South Ogden', 'Riverdale', 'Farmington', 'Centerville',
       'Clinton', 'West Point', 'Woods Cross', 'South Weber',
     ],
+    esLabel: 'los condados de Weber y Davis',
+    esLabelShort: 'Ogden y Layton',
+    es: {
+      honestyShort: 'Nuestra oficina está en Salt Lake, como media hora por la I-15.',
+      honestyLong:
+        'Nuestra oficina está en Salt Lake City, más o menos media hora por la I-15. Vamos a ' +
+        'McKay-Dee, a Davis Hospital, a Layton Hospital, o a su casa. Usted no va a andar ' +
+        'manejando a Salt Lake para firmar papeles.',
+      meeting:
+        'Vamos a donde usted esté en los condados de Weber o Davis, o nos vemos por video el ' +
+        'mismo día.',
+    },
     honesty: {
       short: 'Our office is in Salt Lake, about 35 minutes down I-15.',
       long:

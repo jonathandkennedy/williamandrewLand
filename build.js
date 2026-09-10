@@ -127,6 +127,49 @@ function audit(pages) {
     }
   });
 
+  if (site.intake.spanishStaffed) {
+    const es = pages.filter((p) => p.lang === 'es');
+
+    // A Spanish page routing to an English-only line is worse than no Spanish
+    // page, so the promise printed on it has to be one intake can actually keep.
+    if (!site.intake.es) {
+      blockers.push(
+        'spanishStaffed is true but intake.es is missing, so the Spanish pages promise the ' +
+        'English coverage hours. Set intake.es to what Spanish intake actually covers.'
+      );
+    } else {
+      // The two strings are translations of each other, so they can never be
+      // compared directly - this always asks, and is cleared by confirming.
+      warnings.push(
+        `Spanish pages promise: "${site.intake.es.hours}" / "${site.intake.es.callbackSla}". ` +
+        'Confirm a Spanish speaker really is reachable at 9pm on a Saturday. If Spanish ' +
+        'coverage is narrower than English, narrow intake.es before launch — this string is ' +
+        'printed next to every CTA on the /es/ pages.'
+      );
+    }
+
+    // Every English page needs its counterpart to exist, or the toggle and the
+    // hreflang tags both point at a 404.
+    const slugs = new Set(pages.map((p) => p.slug));
+    pages.forEach((p) => {
+      if (!slugs.has(p.altSlug)) {
+        blockers.push(`/${p.slug}/ links to /${p.altSlug}/ as its language pair, which does not exist.`);
+      }
+    });
+
+    // Catches a page that was added in English and never translated: the
+    // generated Spanish falls back to English strings and nobody notices.
+    es.forEach((p) => {
+      if (/\b(Injured|Hurt in|Talk to a Utah attorney)\b/.test(`${p.h1} ${p.h1Line2}`)) {
+        blockers.push(`/${p.slug}/ has an untranslated English H1.`);
+      }
+    });
+
+    if (!site.legal.disclaimerEs) {
+      blockers.push('legal.disclaimerEs is empty, so Spanish pages would carry an English disclaimer.');
+    }
+  }
+
   return { blockers, warnings };
 }
 
@@ -146,7 +189,10 @@ function main() {
     write(path.join(page.slug, 'index.html'), pageTpl.render(site, page));
   });
 
-  write(path.join('thank-you', 'index.html'), thankYouTpl.render(site));
+  write(path.join('thank-you', 'index.html'), thankYouTpl.render(site, 'en'));
+  if (site.intake.spanishStaffed) {
+    write(path.join('es', 'gracias', 'index.html'), thankYouTpl.render(site, 'es'));
+  }
 
   // Paid-only subdomain: keep the whole thing out of the index so it never
   // competes with the main site's organic pages.
