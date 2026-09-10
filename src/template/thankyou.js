@@ -1,4 +1,4 @@
-const { esc, jsonScript, ICONS, brandTokens } = require('./partials');
+const { esc, jsonScript, ICONS, favicon, brandTokens } = require('./partials');
 const STRINGS = require('../config/shared/strings');
 
 /**
@@ -41,6 +41,7 @@ function render(site, lang) {
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="${esc(site.site.brandColor)}">
   <link rel="stylesheet" href="/assets/styles.css">
+  ${favicon(site)}
   ${brandTokens(site)}
   <script>window.LP_CONFIG = ${jsonScript(lpConfig)};</script>
 
@@ -58,6 +59,7 @@ function render(site, lang) {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', '${esc(t.googleAdsId)}');
+    ${t.ga4Id ? `gtag('config', '${esc(t.ga4Id)}');` : ''}
     // Page-load signal for anyone triggering the Ads conversion in GTM on
     // the thank-you view rather than on the form event.
     dataLayer.push({ event: 'lp_lead_thankyou' });

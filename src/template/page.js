@@ -1,4 +1,4 @@
-const { esc, jsonScript, ICONS, brandTokens, stickyBar, form, ctaStack } = require('./partials');
+const { esc, jsonScript, ICONS, favicon, brandTokens, stickyBar, form, ctaStack } = require('./partials');
 
 /**
  * Renders one PPC landing page.
@@ -70,6 +70,7 @@ function head(site, page) {
 
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="stylesheet" href="/assets/styles.css">
+  ${favicon(site)}
   ${brandTokens(site)}
 
   <script>window.LP_CONFIG = ${jsonScript(lpConfig)};</script>
@@ -90,6 +91,7 @@ function head(site, page) {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', '${esc(t.googleAdsId)}');
+    ${t.ga4Id ? `gtag('config', '${esc(t.ga4Id)}');` : ''}
   </script>${callRail}
 
   <script type="application/ld+json">${jsonScript(legalServiceSchema(site, page))}</script>

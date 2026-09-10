@@ -155,7 +155,7 @@
 
       // Bots fill hidden fields. Drop the submission without feedback -
       // telling a bot why it failed only helps it retry.
-      var honeypot = form.querySelector('[name="company"]');
+      var honeypot = form.querySelector('[name="_gotcha"]');
       if (honeypot && honeypot.value.trim()) return;
 
       var ok = true;
@@ -186,7 +186,6 @@
 
       var data = {};
       new FormData(form).forEach(function (v, k) { data[k] = v; });
-      delete data.company;
       Object.assign(data, attribution, {
         submitted_at: new Date().toISOString(),
         page_title: document.title,

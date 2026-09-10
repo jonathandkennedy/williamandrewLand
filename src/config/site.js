@@ -67,12 +67,14 @@ module.exports = {
      * Spanish intake is staffed, so the /es/ pages are live.
      *
      * The promises below are printed next to every CTA on the Spanish pages.
-     * They currently mirror the English ones. If Spanish coverage is narrower
-     * than English coverage - business hours only, or one bilingual person
-     * rather than the whole desk - change these strings before launch. A
-     * broken promise on the first screen costs more than a smaller one
-     * honestly stated.
+     * CONFIRMED 2026-09-10: Spanish coverage matches English - 24/7, with the
+     * same callback target - so these mirror the English strings.
+     *
+     * If that ever stops being true, narrow these first. A broken promise on
+     * the first screen costs more than a smaller one honestly stated, and the
+     * people it fails are the least likely to call a second firm.
      */
+    esCoverageConfirmedOn: '2026-09-10',
     spanishStaffed: true,
     es: {
       callbackSla: 'Casi todas las llamadas se contestan en persona. Le devolvemos la llamada en unos 15 minutos.',
@@ -96,12 +98,20 @@ module.exports = {
       formSubmit: '',
     },
     /**
-     * SUPPLY - CallRail swap script. Found in CallRail under
-     * Settings > Integrations > JavaScript Snippet. Without it, dynamic
-     * number insertion cannot attribute calls to keyword/campaign.
-     * Example: '//cdn.callrail.com/companies/123456789/abcdef0123456789/12/swap.js'
+     * GA4. Loaded through the same gtag.js as Google Ads.
+     *
+     * If the GTM container ALSO fires a GA4 tag with this same Measurement
+     * ID, every page will be counted twice. Check the container before
+     * launch and keep GA4 in exactly one place - here, or in GTM, not both.
      */
-    callRailSwapScript: '',
+    ga4Id: 'G-101ETBCVGH',
+
+    /**
+     * CallRail swap script (Settings > Integrations > JavaScript Snippet).
+     * This is what performs dynamic number insertion, so calls can be
+     * attributed to a campaign and a keyword rather than just counted.
+     */
+    callRailSwapScript: '//cdn.calltrk.com/companies/256973679/8a1f48423ee6fe69df6b/12/swap.js',
   },
 
   /**
@@ -161,8 +171,16 @@ module.exports = {
       'Submitting this form does not create an attorney-client relationship and does not ' +
       'make us your lawyers. Do not send confidential information until we have agreed in ' +
       'writing to represent you.',
+    /**
+     * SUPPLY - these paths were inferred from the main site's structure and
+     * have NOT been confirmed to resolve; this environment cannot reach that
+     * host. Google Ads wants a working privacy policy, and a dead footer link
+     * on a page collecting personal details is a bad look either way.
+     * Open both, correct if needed, then date linksVerifiedOn.
+     */
     privacyUrl: 'https://www.williamandrewslaw.com/privacy-policy/',
     termsUrl: 'https://www.williamandrewslaw.com/terms-of-use/',
+    linksVerifiedOn: '',
   },
 
   /**
@@ -181,7 +199,7 @@ module.exports = {
    * Left empty, the form fails closed: the visitor is told to call rather
    * than shown a false success, and the lead is logged to the console.
    */
-  formEndpoint: '',
+  formEndpoint: 'https://formspree.io/f/mrpgjqan',
 
   site: {
     // Canonical origin for the landing-page subdomain.
@@ -201,6 +219,8 @@ module.exports = {
      *   accent    the orange on the call buttons
      *   accentDark  pressed/shadow state of the accent
      */
+    // Date this once the hex values below are the real ones.
+    colorsVerifiedOn: '',
     colors: {
       ink: '#0B1524',
       inkMid: '#23344F',

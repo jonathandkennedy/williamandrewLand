@@ -26,6 +26,26 @@ const ICONS = {
 };
 
 /**
+ * Favicon, inline as a data URI.
+ *
+ * A landing page with no favicon shows the browser's blank default, which
+ * reads as unfinished in a tab strip. Inlining it avoids a request on the
+ * critical path and means there is no file to lose in a deploy. It picks up
+ * the brand accent from config, so it changes with the palette.
+ */
+function favicon(site) {
+  const c = (site.site && site.site.colors) || {};
+  const bg = c.ink || '#0B1524';
+  const fg = c.accent || '#F26B21';
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">` +
+    `<rect width="64" height="64" rx="12" fill="${bg}"/>` +
+    `<text x="32" y="45" font-family="Helvetica,Arial,sans-serif" font-size="38" ` +
+    `font-weight="bold" fill="${fg}" text-anchor="middle">A</text></svg>`;
+  return `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(svg)}">`;
+}
+
+/**
  * Brand palette, emitted into the head as custom-property overrides.
  *
  * The stylesheet ships with working defaults; this block overrides them from
@@ -112,8 +132,8 @@ function form(site, page, variant) {
       </div>
 
       <div class="hp" aria-hidden="true">
-        <label for="${esc(id)}-company">${esc(t.honeypot)}</label>
-        <input id="${esc(id)}-company" name="company" type="text" tabindex="-1" autocomplete="off">
+        <label for="${esc(id)}-gotcha">${esc(t.honeypot)}</label>
+        <input id="${esc(id)}-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
       </div>
 
       <button type="submit" class="btn btn--submit">
@@ -128,6 +148,8 @@ function form(site, page, variant) {
           .map((line) => `<li><span class="tick">&#10003;</span><span>${esc(line)}</span></li>`)
           .join('\n        ')}
       </ul>
+
+      <p class="consent">${esc(t.consent)}</p>
     </form>`;
 }
 
@@ -147,4 +169,4 @@ function ctaStack(site, page, loc, opts) {
     ${o.note === false ? '' : `<p class="cta-note">${esc(page.intake.callbackSla)}</p>`}`;
 }
 
-module.exports = { esc, jsonScript, ICONS, brandTokens, stickyBar, form, ctaStack };
+module.exports = { esc, jsonScript, ICONS, favicon, brandTokens, stickyBar, form, ctaStack };

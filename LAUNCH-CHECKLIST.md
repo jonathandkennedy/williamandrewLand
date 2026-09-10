@@ -44,16 +44,24 @@ Point it at something that **texts and calls the lead within five minutes**:
 a CallRail Form endpoint, a Zapier/Make hook into Twilio, or the firm's CRM intake
 webhook. It receives JSON; see the lead payload section in the README.
 
-### 3. CallRail swap script — `site.tracking.callRailSwapScript`
-Empty today. The number `(801) 683-4993` is hardcoded and calls will connect, but
-without the swap script no call can be attributed to a campaign or keyword — so
-cost-per-call is unknowable and bidding is blind.
+### 3. CallRail — verify the swap actually fires *(script set)*
+`//cdn.calltrk.com/companies/256973679/8a1f48423ee6fe69df6b/12/swap.js` is on
+every page.
 
-CallRail → Settings → Integrations → JavaScript Snippet.
+- [ ] Load a page with `?gclid=test` on a real phone and confirm the displayed
+      number swaps to a tracking number.
+- [ ] Confirm the CallRail campaign/number pool is configured for these landing
+      pages, not just the main site.
+- [ ] **Push CallRail's call conversions into Google Ads directly.** The
+      `lp_call_click` event counts *taps*, not connected calls — it fires even
+      if the person hangs up before it rings. A CallRail→Ads conversion counts
+      calls that actually connected and lasted past a threshold, which is a far
+      better signal for smart bidding. Use both: taps as a secondary signal,
+      connected calls as the primary.
 
 ### 4. Google Ads conversion labels — `site.tracking.conversionLabels`
-All three empty (`call`, `text`, `formSubmit`). Ads → Goals → Conversions; each
-label is the part after the slash in `AW-18340419166/XXXXXXXX`.
+All three still empty (`call`, `text`, `formSubmit`). Ads → Goals → Conversions;
+each label is the part after the slash in `AW-18340419166/XXXXXXXX`.
 
 Create three conversion actions:
 - **Phone call from LP** — primary
@@ -62,11 +70,27 @@ Create three conversion actions:
 
 Until these exist, smart bidding has nothing to optimise toward.
 
+### 4b. GA4 double-counting — `site.tracking.ga4Id`
+`G-101ETBCVGH` is loaded directly on every page. **If the GTM container also
+fires a GA4 tag with this same Measurement ID, every pageview is counted
+twice.** Open the container and keep GA4 in exactly one place — here or in GTM,
+not both. Remove the `ga4Id` from config if GTM is already handling it.
+
 ### 5. Confirm the SMS number is real and monitored
 `site.phones.sms` currently mirrors the CallRail number. Confirm it is
 SMS-enabled and that inbound texts reach a device someone actually watches at
 9pm. **A text link into a dead inbox is worse than no text link** — it converts
 an interested person into an ignored one.
+
+### 5b. TCPA consent wording
+The form now carries an inline consent line in both languages: *"By submitting,
+you agree we may call or text you at this number about your case. Message and
+data rates may apply. Reply STOP to opt out."*
+
+This is there because the firm intends to **text** leads back, and an inline
+disclosure is the standard way PI forms handle that without a checkbox that
+costs completions. Have the attorney confirm the wording, and confirm the
+texting platform honours STOP automatically.
 
 ### 6. Brand colours — `site.site.colors`
 The four hex values currently in config are an **approximation** of the site's
@@ -74,9 +98,22 @@ navy-and-orange treatment. They were not sampled from williamandrewslaw.com,
 because the build environment cannot reach it.
 
 Take the real values off the live site (ink / mid navy / accent orange /
-pressed orange) and put them in `site.site.colors`. They are emitted as CSS
-custom properties into every page head, so this one object is the only place
-that needs changing.
+pressed orange) and put them in `site.site.colors`, then date
+`colorsVerifiedOn`. They are emitted as CSS custom properties into every page
+head, so this one object is the only place that needs changing.
+
+One dependency: the call button is **white text on the accent orange**, which
+at the placeholder `#F26B21` is 3.04:1 — barely over the 3:1 minimum for a UI
+component. If the firm's real orange is any lighter, the button text has to go
+dark instead. Flag it and I will switch it.
+
+### 6b. Privacy and terms URLs — `site.legal`
+The footer links to `williamandrewslaw.com/privacy-policy/` and `/terms-of-use/`.
+Both paths were **inferred from the main site's structure and have not been
+confirmed to resolve** — this environment cannot reach that host. Google Ads
+wants a working privacy policy, and a dead footer link on a page collecting
+personal details is a bad look regardless. Open both, correct if needed, then
+date `legal.linksVerifiedOn`.
 
 ### 7. Confirm Spanish intake coverage — `site.intake.es`
 `spanishStaffed` is **true**, so the seven `/es/` pages are live.

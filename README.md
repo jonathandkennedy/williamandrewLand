@@ -157,7 +157,11 @@ Already wired:
 - **GTM** `GTM-KQXMJJPM` — head script + `noscript` iframe on every page
 - **Google Ads** `AW-18340419166` — loaded directly as well as via GTM, so a
   container misconfiguration cannot silently stop conversion reporting
-- **CallRail number** `(801) 683-4993` on every `tel:` and `sms:` link
+- **GA4** `G-101ETBCVGH` — loaded through the same `gtag.js`. If GTM also fires
+  a GA4 tag with this ID, pageviews double-count; keep it in one place.
+- **CallRail** swap script on every page, with `(801) 683-4993` as the fallback
+  number on every `tel:` and `sms:` link
+- **Formspree** `https://formspree.io/f/mrpgjqan`
 
 `dataLayer` events pushed by `lp.js`, each carrying `gclid`, `gbraid`, `wbraid`,
 `msclkid` and all `utm_*` values:

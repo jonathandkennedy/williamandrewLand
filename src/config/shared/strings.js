@@ -45,6 +45,9 @@ module.exports = {
       `Confidential. ${sla}`,
       'Sending this does not hire us or create an attorney-client relationship.',
     ],
+    consent:
+      'By submitting, you agree we may call or text you at this number about your case. ' +
+      'Message and data rates may apply. Reply STOP to opt out.',
     faqHeading: 'Straight answers',
     faqLede: 'The five questions people actually ask on the first call.',
     areaHeading: 'Where we take cases',
@@ -127,6 +130,10 @@ module.exports = {
       `Confidencial. ${sla}`,
       'Enviar este formulario no nos contrata ni crea una relación abogado-cliente.',
     ],
+    consent:
+      'Al enviar, usted acepta que le llamemos o le enviemos mensajes de texto a este número ' +
+      'sobre su caso. Pueden aplicar tarifas de mensajes y datos. Responda STOP para dejar de ' +
+      'recibirlos.',
     faqHeading: 'Respuestas claras',
     faqLede: 'Las cinco preguntas que la gente hace de verdad en la primera llamada.',
     areaHeading: 'Dónde tomamos casos',

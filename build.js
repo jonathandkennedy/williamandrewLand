@@ -60,6 +60,14 @@ function audit(pages) {
       'instead. No lead is silently lost, but no form lead is captured either.'
     );
   }
+  if (site.tracking.ga4Id) {
+    warnings.push(
+      `GA4 (${site.tracking.ga4Id}) is loaded directly on every page. If the GTM container also ` +
+      'fires a GA4 tag with this same ID, pageviews will be double-counted. Keep GA4 in one ' +
+      'place — here or in GTM, not both.'
+    );
+  }
+
   if (!site.tracking.callRailSwapScript) {
     blockers.push(
       'site.tracking.callRailSwapScript is empty. Calls cannot be attributed to a campaign or ' +
@@ -74,6 +82,28 @@ function audit(pages) {
       `Google Ads conversion labels missing: ${missingLabels.join(', ')}. ` +
       'The dataLayer events still fire for GTM, but Ads will not record these conversions ' +
       'directly and smart bidding has nothing to optimise toward.'
+    );
+  }
+
+  // Google Ads requires a reachable privacy policy, and a dead footer link on
+  // a page taking personal details is a bad look regardless. These URLs were
+  // inferred from the main site's structure, not verified.
+  if (!site.legal.linksVerifiedOn) {
+    warnings.push(
+      `Privacy (${site.legal.privacyUrl}) and terms (${site.legal.termsUrl}) URLs have not been ` +
+      'confirmed to resolve. Open both, then set legal.linksVerifiedOn.'
+    );
+  }
+
+  // The call button is white text on the accent. If the firm's real orange is
+  // lighter than the placeholder, that drops below the 3:1 needed for a UI
+  // component and the button text has to go dark instead.
+  if (!site.site.colorsVerifiedOn) {
+    warnings.push(
+      'site.site.colors are an approximation, not sampled from williamandrewslaw.com. Replace ' +
+      'with the real hex values and set colorsVerifiedOn. Note the call button is white on ' +
+      `${site.site.colors.accent} at 3.04:1 — barely over the 3:1 minimum — so a lighter brand ` +
+      'orange needs dark button text instead.'
     );
   }
 
@@ -137,14 +167,15 @@ function audit(pages) {
         'spanishStaffed is true but intake.es is missing, so the Spanish pages promise the ' +
         'English coverage hours. Set intake.es to what Spanish intake actually covers.'
       );
-    } else {
+    } else if (!site.intake.esCoverageConfirmedOn) {
       // The two strings are translations of each other, so they can never be
-      // compared directly - this always asks, and is cleared by confirming.
+      // compared directly - this asks until someone confirms it, by dating
+      // intake.esCoverageConfirmedOn.
       warnings.push(
         `Spanish pages promise: "${site.intake.es.hours}" / "${site.intake.es.callbackSla}". ` +
-        'Confirm a Spanish speaker really is reachable at 9pm on a Saturday. If Spanish ' +
-        'coverage is narrower than English, narrow intake.es before launch — this string is ' +
-        'printed next to every CTA on the /es/ pages.'
+        'Confirm a Spanish speaker really is reachable at 9pm on a Saturday, then set ' +
+        'intake.esCoverageConfirmedOn. If Spanish coverage is narrower than English, narrow ' +
+        'intake.es first — this string is printed next to every CTA on the /es/ pages.'
       );
     }
 
