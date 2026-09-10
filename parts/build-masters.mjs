@@ -12,8 +12,8 @@ const J  = (f) => JSON.parse(rd(f));
 /* Headshot: any of these names, first match wins. Detected at build time so
    dropping the file in and re-running is the whole job — no config edit, and
    no page ever references an image that is not there. */
-const HEADSHOT = ['will-andrews.jpg','will-andrews.jpeg','will-andrews.png','will-andrews.webp',
-                  'headshot.jpg','headshot.png']
+const HEADSHOT = ['will-andrews.webp','will-andrews.jpg','will-andrews.jpeg','will-andrews.png',
+                  'headshot.webp','headshot.jpg','headshot.png']
   .find((f) => fs.existsSync(f)) || '';
 
 const CSS = rd('styles.css');

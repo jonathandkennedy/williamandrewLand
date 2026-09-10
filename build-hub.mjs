@@ -22,7 +22,7 @@ practices.forEach((p) => markets.forEach((m) => {
 const gaps = [];
 if (!C.CLARITY_ID) gaps.push('Clarity ID not set — no session recordings. Add CLARITY_ID and re-run build-masters. When you create the project: Settings → Setup → Advanced → Cookies OFF, or Clarity’s consent banner sits over the mobile call CTA.');
 if (!C.REVIEW_URL) gaps.push('Google reviews deep link not set — the 4.7 shows without a clickable source.');
-const SHOT = ['will-andrews.jpg','will-andrews.jpeg','will-andrews.png','will-andrews.webp','headshot.jpg','headshot.png'].find((f) => fs.existsSync(f));
+const SHOT = ['will-andrews.webp','will-andrews.jpg','will-andrews.jpeg','will-andrews.png','headshot.webp','headshot.jpg','headshot.png'].find((f) => fs.existsSync(f));
 if (!SHOT) gaps.push('Headshot missing — drop will-andrews.jpg (or .png/.webp) in the repo root and re-run build-masters.mjs, then re-bake. The "who you are calling" block renders without a face until then.');
 if (missing.length) gaps.push(`${missing.length} baked page(s) missing — re-run generate-geo.mjs. A live ad group pointing at a missing page burns spend on a 404.`);
 const noPhonePool = markets.filter((k) => GEO[k].areaNote && !GEO[k].phone);
